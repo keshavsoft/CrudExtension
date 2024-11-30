@@ -11,14 +11,26 @@
   ],
   "activationEvents": [],
   "main": "./out/extension.js",
-  "contributes": {
-    "commands": [
-      {
-        "command": "crudextension.helloWorld",
-        "title": "KSHello World"
-      }
-    ]
-  },
+"contributes": {
+  "commands": [
+    {
+      "command": "crudextension.helloWorld",
+      "title": "KSHello World"
+    },
+    {
+      "command": "crudextension.createFolder",
+      "title": "Create Folder"
+    },
+    {
+      "command": "crudextension.createFile",
+      "title": "Create File"
+    },
+    {
+      "command": "crudextension.replaceFolder",
+      "title": "Replace Folder"
+    }
+  ]
+},
   "scripts": {
     "vscode:prepublish": "npm run compile",
     "compile": "tsc -p ./",
