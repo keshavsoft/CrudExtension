@@ -14,7 +14,7 @@
   "contributes": {
     "commands": [
       {
-        "command": "ks2.helloWorld",
+        "command": "crudextension.helloWorld",
         "title": "KSHello World"
       }
     ]
