@@ -7,9 +7,9 @@ import { replaceFolder } from './RegisterCommands/replaceFolder';
 
 export function activate(context: vscode.ExtensionContext) {
     let disposableHello = vscode.commands.registerCommand('crudextension.helloWorld', helloWorld);
-    let disposableCreateFolder = vscode.commands.registerCommand('crudextension.createFolder', createFolder);
-    let disposableCreateFile = vscode.commands.registerCommand('crudextension.createFile', createFile);
-    let disposableReplaceFolder = vscode.commands.registerCommand('crudextension.replaceFolder', replaceFolder);
+    let disposableCreateFolder = vscode.commands.registerCommand('KS-CreateFolder', createFolder);
+    let disposableCreateFile = vscode.commands.registerCommand('KS-CreateFile', createFile);
+    let disposableReplaceFolder = vscode.commands.registerCommand('KS-ReplaceFolder', replaceFolder);
 
     context.subscriptions.push(disposableHello);
     context.subscriptions.push(disposableCreateFolder);

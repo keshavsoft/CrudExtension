@@ -1,8 +1,9 @@
 {
-  "name": "crudextension",
+  "name": "ksextension",
   "displayName": "crudextension",
+  "publisher": "KeshavSoft",
   "description": "",
-  "version": "0.0.1",
+  "version": "0.0.8",
   "engines": {
     "vscode": "^1.95.0"
   },
@@ -18,16 +19,16 @@
       "title": "KSHello World"
     },
     {
-      "command": "crudextension.createFolder",
-      "title": "Create Folder"
+      "command": "KS-CreateFolder",
+      "title": "KS Create Folder"
     },
     {
-      "command": "crudextension.createFile",
-      "title": "Create File"
+      "command": "KS-CreateFile",
+      "title": "KS Create File"
     },
     {
-      "command": "crudextension.replaceFolder",
-      "title": "Replace Folder"
+      "command": "KS-ReplaceFolder",
+      "title": "KS Replace Folder"
     }
   ]
 },
