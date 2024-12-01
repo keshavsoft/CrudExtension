@@ -14,9 +14,9 @@ export function createFolder() {
                         vscode.window.showErrorMessage('Failed to create folder: ' + err.message);
                     } else {
                         vscode.window.showInformationMessage('Folder created: ' + folderPath);
-                    }
+                    };
                 });
             }
         }
     });
-}
+};

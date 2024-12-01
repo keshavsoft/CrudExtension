@@ -1,9 +1,9 @@
 // extension.ts
 import * as vscode from 'vscode';
 import { helloWorld } from './helloworld';
-import { createFolder } from './createFolder';
-import { createFile } from './createFile';
-import { replaceFolder } from './replaceFolder';
+import { createFolder } from './RegisterCommands/createFolder';
+import { createFile } from './RegisterCommands/createFile';
+import { replaceFolder } from './RegisterCommands/replaceFolder';
 
 export function activate(context: vscode.ExtensionContext) {
     let disposableHello = vscode.commands.registerCommand('crudextension.helloWorld', helloWorld);
@@ -15,6 +15,6 @@ export function activate(context: vscode.ExtensionContext) {
     context.subscriptions.push(disposableCreateFolder);
     context.subscriptions.push(disposableCreateFile);
     context.subscriptions.push(disposableReplaceFolder);
-}
+};
 
 export function deactivate() {}
