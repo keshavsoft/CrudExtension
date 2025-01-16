@@ -1,0 +1,49 @@
+{
+  "name": "ksextension",
+  "displayName": "CrudExtension",
+  "publisher": "KeshavSoft",
+  "description": "KeshavSoft first extension",
+  "version": "0.0.10",
+  "engines": {
+    "vscode": "^1.96.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [],
+  "main": "./extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "create-folder.createFolder",
+        "title": "Create Folder Automatically"
+      }
+    ],
+    "menus": {
+      "explorer/context": [
+        {
+          "command": "create-folder.createFolder",
+          "when": "explorerResourceIsFolder",
+          "group": "navigation"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "lint": "eslint .",
+    "pretest": "npm run lint",
+    "test": "vscode-test"
+  },
+  "devDependencies": {
+    "@types/mocha": "^10.0.6",
+    "@types/node": "18.x",
+    "@types/vscode": "^1.96.0",
+    "@vscode/test-cli": "^0.0.4",
+    "@vscode/test-electron": "^2.3.8",
+    "eslint": "^8.56.0",
+    "typescript": "^5.3.3"
+  },
+  "dependencies": {
+    "fs-extra": "^11.3.0"
+  }
+}
