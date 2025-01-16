@@ -33,6 +33,10 @@
       {
         "command": "KS-CopyFolders",
         "title": "KS Copy Folders"
+      },
+      {
+        "command": "KS-CopyFoldersInRoot",
+        "title": "KS Copy Folders In Root"
       }
     ]
   },
