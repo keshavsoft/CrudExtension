@@ -7,9 +7,11 @@ const { getSelectedFolderPath } = require('./getSelectedFolderPath');
 async function createFolder() {
     try {
         const selectedFolder = await getSelectedFolderPath();
+
         if (!selectedFolder) throw new Error('No folder selected, and no active file found in the workspace.');
 
         const folderName = await vscode.window.showInputBox({ prompt: 'Enter the name of the folder to create:' });
+        
         if (!folderName) throw new Error('Folder name was not provided.');
 
         const newFolderPath = path.join(selectedFolder, folderName);

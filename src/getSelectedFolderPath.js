@@ -5,7 +5,6 @@ const fse = require('fs-extra');
 async function getSelectedFolderPath() {
     try {
         // Try to get the currently selected folder in Explorer
-        const selectedResources = await vscode.commands.executeCommand('copyFilePath');
         const clipboardText = await vscode.env.clipboard.readText();
 
         if (clipboardText && (await fse.pathExists(clipboardText)) && (await fse.lstat(clipboardText)).isDirectory()) {
@@ -14,6 +13,7 @@ async function getSelectedFolderPath() {
 
         // If no folder is selected, fall back to the active file's folder
         const activeEditor = vscode.window.activeTextEditor;
+
         if (activeEditor) {
             const activeFilePath = activeEditor.document.uri.fsPath;
             const activeFileFolderPath = require('path').dirname(activeFilePath);
