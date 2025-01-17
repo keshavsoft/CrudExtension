@@ -13,22 +13,22 @@ const LocalFuncForFolder = async () => {
     return null;
 };
 
-async function LocalFuncForFile() {
+const LocalFuncForFile = async () => {
     // If no folder is selected, fall back to the active file's folder
     const activeEditor = vscode.window.activeTextEditor;
+
     if (activeEditor) {
         const activeFilePath = activeEditor.document.uri.fsPath;
         const activeFileFolderPath = require('path').dirname(activeFilePath);
 
         if (await fse.pathExists(activeFileFolderPath)) {
             return activeFileFolderPath;
-        }
+        };
     };
 
     // If no folder or active file is found, return null
     return null;
 };
-
 
 async function getSelectedFolderPath1() {
     try {
@@ -64,8 +64,8 @@ async function getSelectedFolderPath() {
         // Try to get the currently selected folder in Explorer
         const clipboardText = await LocalFuncForFolder();
         const activeEditor = await LocalFuncForFile();
-        return clipboardText;
 
+        return (clipboardText === null ? activeEditor : clipboardText);
     } catch (err) {
         vscode.window.showErrorMessage(`Error retrieving folder: ${err.message}`);
         return null;
