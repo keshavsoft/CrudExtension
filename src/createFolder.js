@@ -7,7 +7,7 @@ const { getSelectedFolderPath } = require('./getSelectedFolderPath');
 async function createFolder() {
     try {
         const selectedFolder = await getSelectedFolderPath();
-        if (!selectedFolder) throw new Error('Please select a folder in the Explorer view.');
+        if (!selectedFolder) throw new Error('No folder selected, and no active file found in the workspace.');
 
         const folderName = await vscode.window.showInputBox({ prompt: 'Enter the name of the folder to create:' });
         if (!folderName) throw new Error('Folder name was not provided.');
@@ -23,7 +23,7 @@ async function createFolder() {
         vscode.window.showInformationMessage(`Folder created and contents copied to: ${newFolderPath}`);
     } catch (err) {
         vscode.window.showErrorMessage(`Error: ${err.message}`);
-    }
-}
+    };
+};
 
 module.exports = { createFolder };
