@@ -2,25 +2,33 @@
 const vscode = require('vscode');
 const fse = require('fs-extra');
 
-/**
- * Utility function to get the currently selected folder in Explorer
- */
 async function getSelectedFolderPath() {
     try {
+        // Try to get the currently selected folder in Explorer
         const selectedResources = await vscode.commands.executeCommand('copyFilePath');
-
-        // This command copies the selected file/folder paths into the clipboard
         const clipboardText = await vscode.env.clipboard.readText();
 
         if (clipboardText && (await fse.pathExists(clipboardText)) && (await fse.lstat(clipboardText)).isDirectory()) {
             return clipboardText;
-        }
+        };
 
+        // If no folder is selected, fall back to the active file's folder
+        const activeEditor = vscode.window.activeTextEditor;
+        if (activeEditor) {
+            const activeFilePath = activeEditor.document.uri.fsPath;
+            const activeFileFolderPath = require('path').dirname(activeFilePath);
+
+            if (await fse.pathExists(activeFileFolderPath)) {
+                return activeFileFolderPath;
+            };
+        };
+
+        // If no folder or active file is found, return null
         return null;
     } catch (err) {
-        vscode.window.showErrorMessage(`Error retrieving selected folder: ${err.message}`);
+        vscode.window.showErrorMessage(`Error retrieving folder: ${err.message}`);
         return null;
-    }
-}
+    };
+};
 
 module.exports = { getSelectedFolderPath };
