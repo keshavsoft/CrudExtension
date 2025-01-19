@@ -21,6 +21,10 @@
       {
         "command": "clientJs.FetchAsPost",
         "title": "ClientSide Js Fetch Post"
+      },
+      {
+        "command": "extension.copyToClipboard",
+        "title": "copyToClipboard"
       }
     ],
     "menus": {
