@@ -7,6 +7,9 @@ const activate = async  (context) => {
     // command to create a folder
     const createFolderCommand = vscode.commands.registerCommand('create-folder.createFolder', createFolder);
     context.subscriptions.push(createFolderCommand);
+
+    const clientJsFetchAsPost = vscode.commands.registerCommand('clientJs.FetchAsPost', createFolder);
+    context.subscriptions.push(clientJsFetchAsPost);
 };
 
 function deactivate() {};

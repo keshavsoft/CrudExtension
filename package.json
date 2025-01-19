@@ -17,6 +17,10 @@
       {
         "command": "create-folder.createFolder",
         "title": "Create Folder Automatically"
+      },
+      {
+        "command": "clientJs.FetchAsPost",
+        "title": "ClientSide Js Fetch Post"
       }
     ],
     "menus": {
