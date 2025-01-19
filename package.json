@@ -23,6 +23,10 @@
         "title": "ClientSide Js Fetch Post"
       },
       {
+        "command": "config.CopyConfigFile",
+        "title": "Copy Config File"
+      },
+      {
         "command": "extension.copyToClipboard",
         "title": "copyToClipboard"
       }

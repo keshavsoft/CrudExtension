@@ -2,6 +2,7 @@
 const vscode = require('vscode');
 const { createFolder } = require('./src/createFolder');
 const { StartFunc: StartFuncPost } = require('./src/ClientSide/Js/Fetch/Post/entryFile');
+const { ConfigFunc: CopyConfig } = require('./src/configFile');
 
 const activate = async (context) => {
     console.log('Congratulations, your extension "create-folder" is now active!');
@@ -11,6 +12,9 @@ const activate = async (context) => {
 
     const clientJsFetchAsPost = vscode.commands.registerCommand('clientJs.FetchAsPost', StartFuncPost);
     context.subscriptions.push(clientJsFetchAsPost);
+
+    const configCopyConfigFile = vscode.commands.registerCommand('config.CopyConfigFile', CopyConfig);
+    context.subscriptions.push(configCopyConfigFile);
 
     vscode.commands.registerCommand('extension.copyToClipboard', async () => {
         try {
