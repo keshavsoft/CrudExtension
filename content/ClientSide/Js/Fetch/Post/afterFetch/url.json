@@ -1,4 +1,4 @@
 {
-    "RedirectToUrl": "ItemTypesShow.html",
-    "PresentUrl": "ItemTypesCreate.html"
+    "RedirectToUrl": "Show.html",
+    "PresentUrl": "Create.html"
 }
