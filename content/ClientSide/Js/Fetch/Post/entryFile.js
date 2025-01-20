@@ -4,7 +4,7 @@ import { StartFunc as afterFetch } from './afterFetch/EntryFile.js';
 const StartFunc = async () => {
     let localResponse = await StartFuncFetchFuncs();
 
-    afterFetch(localResponse);
+    afterFetch({ inResponse: localResponse });
 };
 
 export { StartFunc };
