@@ -1,16 +1,18 @@
 import { StartFunc as Status200 } from "./Status200.js";
 import { StartFunc as Status500 } from "./Status500.js";
 
-const StartFunc = async (response) => {
+let StartFunc = async ({ inResponse }) => {
+    let jVarLocalResponse = await inResponse;
 
-    if (response.status === 200) {
-        Status200(await response.json());
+    if (jVarLocalResponse.status === 200) {
+        let jVarLocalSavedPk = await jVarLocalResponse.text();
+        Status200({ inResponse: jVarLocalSavedPk });
     };
-    if (response.status === 500) {
-        Status500(await localResponse.text());
+
+    if (jVarLocalResponse.status === 500) {
+        let jVarLocalSavedPk = await jVarLocalResponse.text();
+        Status500({ inResponse: jVarLocalSavedPk });
     };
-
-
 };
 
 export { StartFunc };

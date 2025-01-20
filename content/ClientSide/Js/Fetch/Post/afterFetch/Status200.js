@@ -1,15 +1,29 @@
-const StartFunc = (data) => {
-    let localAddondata = data.JsonData
-    jFLocalToInputAddonsId(localAddondata)
-};
+import UrlJson from './url.json' with {type: 'json'};
 
-let jFLocalToInputAddonsId = (inValue) => {
-    let jVarLocalHtmlId = 'AddonsId';
-    let jVarLocalAddonsId = document.getElementById(jVarLocalHtmlId);
+let StartFunc = ({ inRowPk }) => {
+    let LocalRowPk = inRowPk;
 
-    if (jVarLocalAddonsId === null === false) {
-        jVarLocalAddonsId.innerHTML = inValue;
+    if (LocalFuncForSingleTable({ inRowPk: LocalRowPk }) === false) {
+        LocalFuncForAllTables({ inRowPk: LocalRowPk });
     };
 };
 
-export { StartFunc };
+const LocalFuncForSingleTable = ({ inRowPk }) => {
+    let LocalRowPk = inRowPk;
+
+    if (window.location.pathname.endsWith(`/${UrlJson.PresentUrl}`)) {
+        window.location.href = `${UrlJson.RedirectToUrl}?inRowPk=${LocalRowPk}`;
+        return true;
+    };
+
+    return false;
+};
+
+const LocalFuncForAllTables = ({ inRowPk }) => {
+    let LocalRowPk = inRowPk;
+
+    window.location.href = `${jVarGlobalTableName}${UrlJson.RedirectToUrl}?inRowPk=${LocalRowPk}`;
+};
+
+
+export { StartFunc }
