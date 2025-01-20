@@ -23,6 +23,10 @@
         "title": "ClientSide Js Fetch Post"
       },
       {
+        "command": "dynamic.FetchAsPost",
+        "title": "Dynamic Parent Directory"
+      },
+      {
         "command": "config.CopyConfigFile",
         "title": "Copy Config File"
       },
