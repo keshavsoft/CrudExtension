@@ -3,7 +3,7 @@ const vscode = require('vscode');
 const path = require('path');
 const fse = require('fs-extra');
 const { getSelectedFolderPath } = require('../../../../CommonFuncs/getSelectedFolderPath');
-const CommonCopyCodeSourcePath = path.join(__dirname, "..", '..', "..", "..", "..", 'content', "ClientSide", "Js", "Fetch", 'GetFuncs', "ConfigEndPoint");
+const CommonCopyCodeSourcePath = path.join(__dirname, "..", '..', "..", "..", "..", 'content', "ClientSide", "Js", "Fetch", 'GetFuncs', "ShowDataOnly");
 
 const StartFunc = async () => {
     try {
