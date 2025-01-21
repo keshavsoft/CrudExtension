@@ -3,6 +3,8 @@ const vscode = require('vscode');
 const { createFolder } = require('./src/createFolder');
 const { StartFunc: StartFuncPost } = require('./src/ClientSide/Js/Fetch/Post/entryFile');
 const { StartFunc: StartFuncGet } = require('./src/ClientSide/Js/Fetch/Get/entryFile');
+const { StartFunc: StartFuncGetConfigEndPoint } = require('./src/ClientSide/Js/Fetch/Get/configEndPoint');
+const { StartFunc: StartFuncGetShowDataOnly } = require('./src/ClientSide/Js/Fetch/Get/showDataOnly');
 
 const { StartFuncDynamic: StartFuncPostDynamic } = require('./src/dynamicFile');
 const { ConfigFunc: CopyConfig } = require('./src/configFile');
@@ -18,6 +20,12 @@ const activate = async (context) => {
 
     const clientJsFetchAsGet = vscode.commands.registerCommand('clientJs.FetchAsGet', StartFuncGet);
     context.subscriptions.push(clientJsFetchAsGet);
+
+    const clientJsFetchAsGetConfigEndPoint = vscode.commands.registerCommand('clientJs.FetchAsGetConfigEndPoint', StartFuncGetConfigEndPoint);
+    context.subscriptions.push(clientJsFetchAsGetConfigEndPoint);
+
+    const clientJsFetchAsGetShowDataOnly = vscode.commands.registerCommand('clientJs.FetchAsGetShowDataOnly', StartFuncGetShowDataOnly);
+    context.subscriptions.push(clientJsFetchAsGetShowDataOnly);
 
     const dynamicFetchAsPost = vscode.commands.registerCommand('dynamic.FetchAsPost', StartFuncPostDynamic);
     context.subscriptions.push(dynamicFetchAsPost);
