@@ -3,7 +3,7 @@
   "displayName": "CrudExtension",
   "publisher": "KeshavSoft",
   "description": "KeshavSoft first extension",
-  "version": "0.0.16",
+  "version": "0.0.17",
   "engines": {
     "vscode": "^1.96.0"
   },
@@ -21,6 +21,10 @@
       {
         "command": "clientJs.FetchAsPost",
         "title": "ClientSide Js Fetch Post"
+      },
+      {
+        "command": "clientJs.FetchAsGet",
+        "title": "ClientSide Js Fetch Get"
       },
       {
         "command": "dynamic.FetchAsPost",
