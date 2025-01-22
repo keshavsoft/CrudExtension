@@ -3,7 +3,7 @@ const vscode = require('vscode');
 const path = require('path');
 const fse = require('fs-extra');
 const { getSelectedFolderPath } = require('../../../../../../CommonFuncs/getSelectedFolderPath');
-const CommonCopyCodeSourcePath = path.join(__dirname, "..", '..', "..", '..', "..", "..", "..", 'content', "ClientSide", "Js", "ToHtml", 'Anchor', "ByClass");
+const CommonCopyCodeSourcePath = path.join(__dirname, "..", '..', "..", '..', "..", "..", "..", 'content', "ClientSide", "Js", "ToHtml", 'Anchor', "ByClass", "JsonEndPoint");
 
 const StartFunc = async () => {
     try {
@@ -11,7 +11,9 @@ const StartFunc = async () => {
 
         if (!selectedFolder) throw new Error('No folder selected, and no active file found in the workspace.');
 
-        await fse.copy(CommonCopyCodeSourcePath, selectedFolder);
+        const newFolderPath = path.join(selectedFolder, "RefreshBSTableClass");
+
+        await fse.copy(CommonCopyCodeSourcePath, newFolderPath);
 
         vscode.window.showInformationMessage(`Folder created and contents copied to: ${selectedFolder}`);
     } catch (error) {

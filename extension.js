@@ -6,6 +6,7 @@ const { StartFunc: StartFuncGet } = require('./src/ClientSide/Js/Fetch/Get/entry
 const { StartFunc: StartFuncGetConfigEndPoint } = require('./src/ClientSide/Js/Fetch/Get/configEndPoint');
 const { StartFunc: StartFuncGetShowDataOnly } = require('./src/ClientSide/Js/Fetch/Get/showDataOnly');
 const { StartFunc: StartFuncToHtml } = require('./src/ClientSide/Js/ToHtml/Anchor/ByClass/RefreshBSTableClass/addListener');
+const { StartFunc: StartFuncToHtmladdListenerWithUrl } = require('./src/ClientSide/Js/ToHtml/Anchor/ByClass/RefreshBSTableClass/addListenerWithUrl');
 
 const { StartFuncDynamic: StartFuncPostDynamic } = require('./src/dynamicFile');
 const { ConfigFunc: CopyConfig } = require('./src/configFile');
@@ -31,6 +32,11 @@ const activate = async (context) => {
     const clientJsToHtmlAnchorByClassRefreshBSTableClass = vscode.commands.registerCommand('clientJs.ToHtml.Anchor.ByClass.RefreshBSTableClass', StartFuncToHtml);
     context.subscriptions.push(clientJsToHtmlAnchorByClassRefreshBSTableClass);
 
+    const clientJsToHtmladdListenerWithUrl = vscode.commands.registerCommand('clientJs.ToHtml.Anchor.ByClass.RefreshBSTableClass.WithUrl', StartFuncToHtmladdListenerWithUrl);
+    context.subscriptions.push(clientJsToHtmladdListenerWithUrl);
+
+    
+
     const dynamicFetchAsPost = vscode.commands.registerCommand('dynamic.FetchAsPost', StartFuncPostDynamic);
     context.subscriptions.push(dynamicFetchAsPost);
 
@@ -45,6 +51,10 @@ const activate = async (context) => {
         } catch (error) {
             console.error("Clipboard operation failed:", error);
         }
+    });
+
+    vscode.commands.registerCommand('extension.Path', async () => {
+        vscode.window.showInformationMessage(__dirname);
     });
 };
 

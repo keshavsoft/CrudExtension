@@ -3,7 +3,7 @@
   "displayName": "CrudExtension",
   "publisher": "KeshavSoft",
   "description": "KeshavSoft Extension to enhance the development of web applications",
-  "version": "0.0.24",
+  "version": "0.0.25",
   "engines": {
     "vscode": "^1.96.0"
   },
@@ -39,6 +39,10 @@
         "title": "ClientSide Js ToHtml Anchor ByClass RefreshBSTableClass"
       },
       {
+        "command": "clientJs.ToHtml.Anchor.ByClass.RefreshBSTableClass.WithUrl",
+        "title": "ClientSide Js ToHtml Anchor ByClass RefreshBSTableClass WithUrl"
+      },
+      {
         "command": "dynamic.FetchAsPost",
         "title": "Dynamic Parent Directory"
       },
@@ -49,6 +53,10 @@
       {
         "command": "extension.copyToClipboard",
         "title": "copyToClipboard"
+      },
+      {
+        "command": "extension.Path",
+        "title": "Get Extension Path"
       }
     ],
     "menus": {
