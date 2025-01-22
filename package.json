@@ -2,8 +2,8 @@
   "name": "ksextension",
   "displayName": "CrudExtension",
   "publisher": "KeshavSoft",
-  "description": "KeshavSoft first extension",
-  "version": "0.0.22",
+  "description": "KeshavSoft Extension to enhance the development of web applications",
+  "version": "0.0.24",
   "engines": {
     "vscode": "^1.96.0"
   },
@@ -33,6 +33,10 @@
       {
         "command": "clientJs.FetchAsGetShowDataOnly",
         "title": "ClientSide Js Fetch Get ShowDataOnly"
+      },
+      {
+        "command": "clientJs.ToHtml.Anchor.ByClass.RefreshBSTableClass",
+        "title": "ClientSide Js ToHtml Anchor ByClass RefreshBSTableClass"
       },
       {
         "command": "dynamic.FetchAsPost",

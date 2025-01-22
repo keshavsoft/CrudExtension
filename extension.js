@@ -5,6 +5,7 @@ const { StartFunc: StartFuncPost } = require('./src/ClientSide/Js/Fetch/Post/ent
 const { StartFunc: StartFuncGet } = require('./src/ClientSide/Js/Fetch/Get/entryFile');
 const { StartFunc: StartFuncGetConfigEndPoint } = require('./src/ClientSide/Js/Fetch/Get/configEndPoint');
 const { StartFunc: StartFuncGetShowDataOnly } = require('./src/ClientSide/Js/Fetch/Get/showDataOnly');
+const { StartFunc: StartFuncToHtml } = require('./src/ClientSide/Js/ToHtml/Anchor/ByClass/RefreshBSTableClass/addListener');
 
 const { StartFuncDynamic: StartFuncPostDynamic } = require('./src/dynamicFile');
 const { ConfigFunc: CopyConfig } = require('./src/configFile');
@@ -26,6 +27,9 @@ const activate = async (context) => {
 
     const clientJsFetchAsGetShowDataOnly = vscode.commands.registerCommand('clientJs.FetchAsGetShowDataOnly', StartFuncGetShowDataOnly);
     context.subscriptions.push(clientJsFetchAsGetShowDataOnly);
+
+    const clientJsToHtmlAnchorByClassRefreshBSTableClass = vscode.commands.registerCommand('clientJs.ToHtml.Anchor.ByClass.RefreshBSTableClass', StartFuncToHtml);
+    context.subscriptions.push(clientJsToHtmlAnchorByClassRefreshBSTableClass);
 
     const dynamicFetchAsPost = vscode.commands.registerCommand('dynamic.FetchAsPost', StartFuncPostDynamic);
     context.subscriptions.push(dynamicFetchAsPost);
