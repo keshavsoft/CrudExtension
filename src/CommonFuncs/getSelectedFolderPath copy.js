@@ -4,13 +4,11 @@ const fse = require('fs-extra');
 const LocalFuncForFolder = async () => {
     // Try to get the currently selected folder in Explorer
     await vscode.commands.executeCommand('copyFilePath');
-
     const clipboardText = await vscode.env.clipboard.readText();
 
     if (clipboardText && (await fse.pathExists(clipboardText)) && (await fse.lstat(clipboardText)).isDirectory()) {
         return clipboardText;
     };
-
     return null;
 };
 
@@ -40,7 +38,6 @@ async function getSelectedFolderPath() {
         return (clipboardText === null ? activeEditor : clipboardText);
     } catch (err) {
         vscode.window.showErrorMessage(`Error retrieving folder: ${err.message}`);
-
         return null;
     };
 };

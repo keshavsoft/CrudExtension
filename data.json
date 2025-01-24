@@ -3,7 +3,7 @@
   "displayName": "CrudExtension",
   "publisher": "KeshavSoft",
   "description": "KeshavSoft Extension to enhance the development of web applications",
-  "version": "0.0.27",
+  "version": "0.0.26",
   "engines": {
     "vscode": "^1.96.0"
   },
@@ -13,16 +13,7 @@
   "activationEvents": [],
   "main": "./extension.js",
   "contributes": {
-    "commands": [
-      {
-        "command": "ClientSide.Js.ToHtml.TotalJs.AsModule",
-        "title": "ClientSide.Js.ToHtml.TotalJs.AsModule"
-      },
-      {
-        "command": "extension.Path",
-        "title": "Get the current Extension Path"
-      }
-    ],
+    "commands": [],
     "commands_23Jan": [
       {
         "command": "create-folder.createFolder",
@@ -70,7 +61,13 @@
       }
     ],
     "menus": {
-      "explorer/context": []
+      "explorer/context1": [
+        {
+          "command": "create-folder.createFolder",
+          "when": "explorerResourceIsFolder",
+          "group": "navigation"
+        }
+      ]
     }
   },
   "scripts": {
