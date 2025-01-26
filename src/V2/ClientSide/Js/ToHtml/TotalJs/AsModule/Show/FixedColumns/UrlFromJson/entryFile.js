@@ -2,8 +2,8 @@ const vscode = require('vscode');
 const fse = require('fs-extra');
 const path = require('path');
 
-const { getSelectedFolderPath } = require('../../../../../../CommonFuncs/getSelectedFolderPath');
-const CommonRegisterCommand = "ClientSide.Js.ToHtml.TotalJs.AsModule";
+const { getSelectedFolderPath } = require('../../../../../../../../../CommonFuncs/getSelectedFolderPath');
+const CommonRegisterCommand = "ClientSide.Js.ToHtml.TotalJs.AsModule.Show.FixedColumns.UrlFromJson";
 
 const StartFunc = () => {
     activateFunc();
@@ -21,9 +21,10 @@ const LocalFuncToActivate = async () => {
 
         vscode.window.showInformationMessage(`------------- folder: ${__dirname}`);
 
-        const LocalFromPath = path.join(__dirname, "copyCode");
+        const LocalFromPath = path.join(__dirname, "..", "copyCode");
+        const LocalToPath = path.join(selectedFolder, "Show");
 
-        await fse.copy(LocalFromPath, selectedFolder);
+        await fse.copy(LocalFromPath, LocalToPath);
 
     } catch (error) {
         console.log("aaaaaaa  : ", error.message);

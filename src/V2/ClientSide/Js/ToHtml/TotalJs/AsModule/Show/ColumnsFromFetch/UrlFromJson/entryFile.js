@@ -2,8 +2,8 @@ const vscode = require('vscode');
 const fse = require('fs-extra');
 const path = require('path');
 
-const { getSelectedFolderPath } = require('../../../../../../../../CommonFuncs/getSelectedFolderPath');
-const CommonRegisterCommand = "ClientSide.Js.ToHtml.TotalJs.AsModule.Show.UrlFromJson";
+const { getSelectedFolderPath } = require('../../../../../../../../../CommonFuncs/getSelectedFolderPath');
+const CommonRegisterCommand = "ClientSide.Js.ToHtml.TotalJs.AsModule.Show.ColumnsFromFetch.UrlFromJson";
 
 const StartFunc = () => {
     activateFunc();

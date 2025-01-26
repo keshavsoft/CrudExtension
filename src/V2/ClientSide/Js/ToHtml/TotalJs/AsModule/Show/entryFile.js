@@ -1,9 +1,9 @@
-const { StartFunc: StartFuncUrlFromJson } = require("./UrlFromJson/entryFile");
-const { StartFunc: StartFuncUrlFromInput } = require("./UrlFromInput/entryFile");
+const { StartFunc: StartFuncFixedColumns } = require("./FixedColumns/entryFile");
+const { StartFunc: StartFuncColumnsFromFetch } = require("./ColumnsFromFetch/entryFile");
 
 const StartFunc = () => {
-    StartFuncUrlFromJson();
-    StartFuncUrlFromInput();
+    StartFuncFixedColumns();
+    StartFuncColumnsFromFetch();
 };
 
 module.exports = { StartFunc };
