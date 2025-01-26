@@ -23,7 +23,8 @@ const LocalFuncToActivate = async () => {
 
         if (!LocalEndPointNeeded) throw new Error('Folder name was not provided.');
 
-        const LocalFromPath = path.join(__dirname, "copyCode");
+        // const LocalFromPath = path.join(__dirname, "copyCode");
+        const LocalFromPath = path.join(__dirname, "..", "copyCode");
         const LocalToPath = path.join(selectedFolder, "Show");
 
         await fse.copy(LocalFromPath, LocalToPath);

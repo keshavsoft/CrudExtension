@@ -21,7 +21,7 @@ const LocalFuncToActivate = async () => {
 
         vscode.window.showInformationMessage(`------------- folder: ${__dirname}`);
 
-        const LocalFromPath = path.join(__dirname, "copyCode");
+        const LocalFromPath = path.join(__dirname, "..", "copyCode");
         const LocalToPath = path.join(selectedFolder, "Show");
 
         await fse.copy(LocalFromPath, LocalToPath);
