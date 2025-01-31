@@ -3,7 +3,7 @@
   "displayName": "CrudExtension",
   "publisher": "KeshavSoft",
   "description": "KeshavSoft Extension to enhance the development of web applications",
-  "version": "0.0.33",
+  "version": "0.0.34",
   "engines": {
     "vscode": "^1.96.0"
   },
@@ -25,6 +25,10 @@
       {
         "command": "ClientSide.Js.ToHtml.TotalJs.AsModule.Show.ColumnsFromFetch.UrlFromJson",
         "title": "ClientSide Js ToHtml TotalJs AsModule Show ColumnsFromFetch UrlFromJson"
+      },
+      {
+        "command": "ClientSide.Js.FetchFuncs.AsModule.Show.ColumnsFromFetch.UrlFromJson",
+        "title": "ClientSide Js FetchFuncs AsModule Show ColumnsFromFetch UrlFromJson"
       },
       {
         "command": "extension.Path",
@@ -96,7 +100,6 @@
     "typescript": "^5.3.3"
   },
   "dependencies": {
-    "fs-extra": "^11.3.0",
-    "gulp": "^5.0.0"
+    "fs-extra": "^11.3.0"
   }
 }
