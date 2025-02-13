@@ -3,7 +3,7 @@
   "displayName": "CrudExtension",
   "publisher": "KeshavSoft",
   "description": "KeshavSoft Extension to enhance the development of web applications",
-  "version": "0.0.35",
+  "version": "0.0.36",
   "engines": {
     "vscode": "^1.96.0"
   },
@@ -37,6 +37,10 @@
       {
         "command": "extension.Path",
         "title": "Get the current Extension Path"
+      },
+      {
+        "command": "Keshav",
+        "title": "Keshav"
       }
     ],
     "commands_23Jan": [
