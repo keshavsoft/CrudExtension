@@ -4,7 +4,7 @@ const CommonNewRoute = "KS";
 const CommonRouterSearch = "} from ";
 const CommonSearchForBody = "export {";
 const CommonFileName = "EntryFile.js";
-const CommonLevelName = "Repo";
+const CommonLevelName = "Dal";
 
 const StartFunc = ({ inLinesArray, inEditorPath }) => {
     try {
@@ -39,15 +39,11 @@ const LocalFuncInsertFuncBody = ({ inLinesArray }) => {
     let LocalFindIndex = LocalLines.findIndex((element) => element.startsWith(CommonSearchForBody));
 
     const LocalToInsertArray = [
-        `let Get${CommonNewRoute}Func = async (req, res) => {`,
-        `\tlet LocalFromRepo = await Get${CommonNewRoute}Func${CommonLevelName}();`,
         "",
-        "\tif (LocalFromRepo === false) {",
-        "\t\tres.status(500).send(LocalFromRepo);",
-        "\t\treturn;",
-        "\t};",
+        `let Get${CommonNewRoute}Func = async () => {`,
+        `\tlet LocalFrom${CommonLevelName} = await Get${CommonNewRoute}Func${CommonLevelName}();`,
         "",
-        "\tres.status(200).send(JSON.stringify(LocalFromRepo));",
+        `\treturn LocalFrom${CommonLevelName};`,
         "};"
     ];
 

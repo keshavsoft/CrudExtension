@@ -6,6 +6,7 @@ const CommonRegisterCommand = "Keshav";
 
 const { StartFunc: StartFuncFromRouter } = require("./router");
 const { StartFunc: StartFuncFromController } = require("./controller/entryFile");
+const { StartFunc: StartFuncFromRepo } = require("./Repo/entryFile");
 
 const StartFunc = () => {
     activateFunc();
@@ -25,6 +26,7 @@ const LocalFuncToActivate = async () => {
 
         StartFuncFromRouter({ inLinesArray: LocalLines, inEditorPath: selectedFolder });
         StartFuncFromController({ inLinesArray: LocalLines, inEditorPath: selectedFolder });
+        StartFuncFromRepo({ inLinesArray: LocalLines, inEditorPath: selectedFolder });
 
         vscode.window.showInformationMessage(`Folder created and contents copied to: ${LocalLines[LocalLines.length - 2]}`);
     } catch (error) {
