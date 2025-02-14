@@ -30,9 +30,10 @@ const processLineByLine = async ({ inFileName }) => {
     }
 };
 
-const StartFunc = async ({ inEditorPath }) => {
+const StartFunc = async ({ inEditorPath, inNewRoute }) => {
     try {
         const activeFilePath = inEditorPath;
+        const LocalNewRoute = inNewRoute;
         // let LocalLines = inLinesArray;
 
         const activeFileFolderPath = path.dirname(activeFilePath);
@@ -40,7 +41,10 @@ const StartFunc = async ({ inEditorPath }) => {
         const newFolderPath = path.join(activeFileFolderPath, "..", "..", "dals", "getFuncs", "EntryFile.js");
         let LocalLines = await processLineByLine({ inFileName: newFolderPath });
 
-        StartFuncFromInsertCode({ inLinesArray: LocalLines, inEditorPath: newFolderPath });
+        StartFuncFromInsertCode({
+            inLinesArray: LocalLines, inEditorPath: newFolderPath,
+            inNewRoute: LocalNewRoute
+        });
     } catch (error) {
         console.log("aaaaaaa  : ", error.message);
         return error.message;

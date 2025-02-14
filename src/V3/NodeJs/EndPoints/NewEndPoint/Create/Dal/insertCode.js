@@ -5,14 +5,27 @@ const CommonRouterSearch = "import {";
 const CommonSearchForBody = "export {";
 const CommonFileName = "EntryFile.js";
 
-const StartFunc = ({ inLinesArray, inEditorPath }) => {
+const StartFunc = ({ inLinesArray, inEditorPath, inNewRoute }) => {
     try {
         const selectedFolder = inEditorPath;
+        const LocalNewRoute = inNewRoute;
+
         let LocalLines = inLinesArray;
 
-        LocalFuncInsertImportFunc({ inLinesArray: LocalLines });
-        LocalFuncInsertFuncBody({ inLinesArray: LocalLines });
-        LocalFuncInsertToExport({ inLinesArray: LocalLines });
+        LocalFuncInsertImportFunc({
+            inLinesArray: LocalLines,
+            inNewRoute: LocalNewRoute
+        });
+
+        LocalFuncInsertFuncBody({
+            inLinesArray: LocalLines,
+            inNewRoute: LocalNewRoute
+        });
+
+        LocalFuncInsertToExport({
+            inLinesArray: LocalLines,
+            inNewRoute: LocalNewRoute
+        });
 
         LocalFuncWriteFile({ inLinesArray: LocalLines, inEditorPath: selectedFolder });
     } catch (error) {
@@ -21,24 +34,28 @@ const StartFunc = ({ inLinesArray, inEditorPath }) => {
     };
 };
 
-const LocalFuncInsertImportFunc = ({ inLinesArray }) => {
+const LocalFuncInsertImportFunc = ({ inLinesArray, inNewRoute }) => {
     let LocalLines = inLinesArray;
+    const LocalNewRoute = inNewRoute;
+
     let LocalFindIndex = LocalLines.findLastIndex((element) => element.startsWith(CommonRouterSearch));
-    const LocalToInsertLine = `import { StartFunc as StartFuncFromGet${CommonNewRoute} } from '../../kLowDb/ReadFromFile/Get${CommonNewRoute}Func.js';`
+    const LocalToInsertLine = `import { StartFunc as StartFuncFromGet${LocalNewRoute} } from '../../kLowDb/ReadFromFile/Get${LocalNewRoute}Func.js';`
 
     //then add our code
     LocalLines.splice(LocalFindIndex + 1, 0, LocalToInsertLine);
     // LocalLines.splice(LocalFindIndex, 0, "");
 };
 
-const LocalFuncInsertFuncBody = ({ inLinesArray }) => {
+const LocalFuncInsertFuncBody = ({ inLinesArray, inNewRoute }) => {
     let LocalLines = inLinesArray;
+    const LocalNewRoute = inNewRoute;
+
     let LocalFindIndex = LocalLines.findIndex((element) => element.startsWith(CommonSearchForBody));
 
     const LocalToInsertArray = [
         "",
-        `let Get${CommonNewRoute}Func = async () => {`,
-        `\tlet LocalFromLowDb = await StartFuncFromGet${CommonNewRoute}();`,
+        `let Get${LocalNewRoute}Func = async () => {`,
+        `\tlet LocalFromLowDb = await StartFuncFromGet${LocalNewRoute}();`,
         "",
         `\treturn await LocalFromLowDb;`,
         "};"
@@ -61,11 +78,12 @@ const LocalFuncWriteFile = ({ inLinesArray, inEditorPath }) => {
     fse.writeFileSync(`${activeFileFolderPath}/${LocalFileName}`, content, 'utf-8');
 };
 
-const LocalFuncInsertToExport = ({ inLinesArray }) => {
+const LocalFuncInsertToExport = ({ inLinesArray, inNewRoute }) => {
     let LocalLines = inLinesArray;
+    const LocalNewRoute = inNewRoute;
 
     LocalLines[LocalLines.length - 2] += ",";
-    LocalLines.splice(LocalLines.length - 1, 0, `\tGet${CommonNewRoute}Func`);
+    LocalLines.splice(LocalLines.length - 1, 0, `\tGet${LocalNewRoute}Func`);
 };
 
 module.exports = { StartFunc };

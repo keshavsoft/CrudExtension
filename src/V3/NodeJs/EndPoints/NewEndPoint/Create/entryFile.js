@@ -23,12 +23,31 @@ const LocalFuncToActivate = async () => {
 
         if (!selectedFolder) throw new Error('No folder selected, and no active file found in the workspace.');
 
+        const LocalEndPointNeeded = await vscode.window.showInputBox({ prompt: 'Enter the new end point' });
+
+        if (!LocalEndPointNeeded) throw new Error('New end point was not provided.');
+
         let LocalLines = await processLineByLine({ inFileName: selectedFolder });
 
-        StartFuncFromRouter({ inLinesArray: LocalLines, inEditorPath: selectedFolder });
-        StartFuncFromController({ inLinesArray: LocalLines, inEditorPath: selectedFolder });
-        StartFuncFromRepo({ inLinesArray: LocalLines, inEditorPath: selectedFolder });
-        StartFuncFromDal({ inLinesArray: LocalLines, inEditorPath: selectedFolder });
+        StartFuncFromRouter({
+            inLinesArray: LocalLines, inEditorPath: selectedFolder,
+            inNewRoute: LocalEndPointNeeded
+        });
+
+        StartFuncFromController({
+            inLinesArray: LocalLines, inEditorPath: selectedFolder,
+            inNewRoute: LocalEndPointNeeded
+        });
+
+        StartFuncFromRepo({
+            inLinesArray: LocalLines, inEditorPath: selectedFolder,
+            inNewRoute: LocalEndPointNeeded
+        });
+
+        StartFuncFromDal({
+            inLinesArray: LocalLines, inEditorPath: selectedFolder,
+            inNewRoute: LocalEndPointNeeded
+        });
 
         vscode.window.showInformationMessage(`Folder created and contents copied to: ${LocalLines[LocalLines.length - 2]}`);
     } catch (error) {

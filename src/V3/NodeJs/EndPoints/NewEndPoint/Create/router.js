@@ -1,16 +1,15 @@
 const fse = require('fs-extra');
 
-const CommonNewRoute = "KS";
 const CommonRouterSearch = "} from ";
 const CommonFileName = "EntryFile.js";
 
-const StartFunc = ({ inLinesArray, inEditorPath }) => {
+const StartFunc = ({ inLinesArray, inEditorPath, inNewRoute }) => {
     try {
         const selectedFolder = inEditorPath;
         let LocalLines = inLinesArray;
 
-        LocalFuncInsertImportFunc({ inLinesArray: LocalLines });
-        LocalFuncInsertRouterUse({ inLinesArray: LocalLines });
+        LocalFuncInsertImportFunc({ inLinesArray: LocalLines, inNewRoute });
+        LocalFuncInsertRouterUse({ inLinesArray: LocalLines, inNewRoute });
         LocalFuncWriteFile({ inLinesArray: LocalLines, inEditorPath: selectedFolder });
     } catch (error) {
         console.log("aaaaaaa  : ", error.message);
@@ -18,10 +17,12 @@ const StartFunc = ({ inLinesArray, inEditorPath }) => {
     };
 };
 
-const LocalFuncInsertImportFunc = ({ inLinesArray }) => {
+const LocalFuncInsertImportFunc = ({ inLinesArray, inNewRoute }) => {
     let LocalLines = inLinesArray;
+    const LocalNewRoute = inNewRoute;
+
     let LocalFindIndex = LocalLines.findIndex((element) => element.startsWith(CommonRouterSearch));
-    const LocalToInsertLine = `\tGet${CommonNewRoute}Func`;
+    const LocalToInsertLine = `\tGet${LocalNewRoute}Func`;
 
     LocalLines[LocalFindIndex - 1] = LocalLines[LocalFindIndex - 1] + ",";
 
@@ -41,10 +42,11 @@ const LocalFuncWriteFile = ({ inLinesArray, inEditorPath }) => {
     fse.writeFileSync(`${activeFileFolderPath}/${LocalFileName}`, content, 'utf-8');
 };
 
-const LocalFuncInsertRouterUse = ({ inLinesArray }) => {
+const LocalFuncInsertRouterUse = ({ inLinesArray, inNewRoute }) => {
     let LocalLines = inLinesArray;
+    const LocalNewRoute = inNewRoute;
 
-    const LocalToInsertLine = `router.get('/${CommonNewRoute}', Get${CommonNewRoute}Func);\r`;
+    const LocalToInsertLine = `router.get('/${LocalNewRoute}', Get${LocalNewRoute}Func);\r`;
 
     LocalLines.splice(LocalLines.length - 1, 0, LocalToInsertLine);
     LocalLines.splice(LocalLines.length - 1, 0, "");
