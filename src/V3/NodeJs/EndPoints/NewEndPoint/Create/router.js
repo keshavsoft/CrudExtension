@@ -2,6 +2,7 @@ const fse = require('fs-extra');
 
 const CommonNewRoute = "KS";
 const CommonRouterSearch = "} from ";
+const CommonFileName = "EntryFile.js";
 
 const StartFunc = ({ inLinesArray, inEditorPath }) => {
     try {
@@ -33,11 +34,11 @@ const LocalFuncWriteFile = ({ inLinesArray, inEditorPath }) => {
 
     const content = LocalLines.join('\n');
 
-    const fp = 'output.js';
+    const LocalFileName = CommonFileName;
 
     const activeFileFolderPath = require('path').dirname(inEditorPath);
 
-    fse.writeFileSync(`${activeFileFolderPath}/${fp}`, content, 'utf-8');
+    fse.writeFileSync(`${activeFileFolderPath}/${LocalFileName}`, content, 'utf-8');
 };
 
 const LocalFuncInsertRouterUse = ({ inLinesArray }) => {

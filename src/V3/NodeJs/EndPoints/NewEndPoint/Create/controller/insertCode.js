@@ -3,6 +3,7 @@ const fse = require('fs-extra');
 const CommonNewRoute = "KS";
 const CommonRouterSearch = "} from ";
 const CommonSearchForBody = "export {";
+const CommonFileName = "EntryFile.js";
 
 const StartFunc = ({ inLinesArray, inEditorPath }) => {
     try {
@@ -11,6 +12,8 @@ const StartFunc = ({ inLinesArray, inEditorPath }) => {
 
         LocalFuncInsertImportFunc({ inLinesArray: LocalLines });
         LocalFuncInsertFuncBody({ inLinesArray: LocalLines });
+        LocalFuncInsertToExport({ inLinesArray: LocalLines });
+
         LocalFuncWriteFile({ inLinesArray: LocalLines, inEditorPath: selectedFolder });
     } catch (error) {
         console.log("aaaaaaa  : ", error.message);
@@ -35,8 +38,8 @@ const LocalFuncInsertFuncBody = ({ inLinesArray }) => {
     let LocalFindIndex = LocalLines.findIndex((element) => element.startsWith(CommonSearchForBody));
 
     const LocalToInsertArray = [
-        "let GetBodyCheckFunc = async (req, res) => {",
-        "\tlet LocalFromRepo = await GetBodyCheckFuncRepo();",
+        `let Get${CommonNewRoute}Func = async (req, res) => {`,
+        `\tlet LocalFromRepo = await Get${CommonNewRoute}FuncRepo();`,
         "",
         "\tif (LocalFromRepo === false) {",
         "\t\tres.status(500).send(LocalFromRepo);",
@@ -57,20 +60,18 @@ const LocalFuncWriteFile = ({ inLinesArray, inEditorPath }) => {
 
     const content = LocalLines.join('\n');
 
-    const fp = 'output.js';
+    const LocalFileName = CommonFileName;
 
     const activeFileFolderPath = require('path').dirname(inEditorPath);
 
-    fse.writeFileSync(`${activeFileFolderPath}/${fp}`, content, 'utf-8');
+    fse.writeFileSync(`${activeFileFolderPath}/${LocalFileName}`, content, 'utf-8');
 };
 
-const LocalFuncInsertRouterUse = ({ inLinesArray }) => {
+const LocalFuncInsertToExport = ({ inLinesArray }) => {
     let LocalLines = inLinesArray;
 
-    const LocalToInsertLine = `router.get('/${CommonNewRoute}', Get${CommonNewRoute}Func);\r`;
-
-    LocalLines.splice(LocalLines.length - 1, 0, LocalToInsertLine);
-    LocalLines.splice(LocalLines.length - 1, 0, "");
+    LocalLines[LocalLines.length - 2] += ",";
+    LocalLines.splice(LocalLines.length - 1, 0, `\tGet${CommonNewRoute}Func`);
 };
 
 module.exports = { StartFunc };
