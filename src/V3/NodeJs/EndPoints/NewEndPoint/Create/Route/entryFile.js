@@ -1,17 +1,19 @@
-const vscode = require('vscode');
-
 const fse = require('fs-extra');
 
 const CommonRouterSearch = "} from ";
 const CommonFileName = "EntryFile.js";
+
+const { StartFunc: StartFuncFromRouterDotLine } = require("./routerDotLine");
+const { StartFunc: StartFuncFromImportLine } = require("./importLine");
 
 const StartFunc = ({ inLinesArray, inEditorPath, inNewRoute }) => {
     try {
         const selectedFolder = inEditorPath;
         let LocalLines = inLinesArray;
 
-        LocalFuncInsertImportFunc({ inLinesArray: LocalLines, inNewRoute });
-        LocalFuncInsertRouterUse({ inLinesArray: LocalLines, inNewRoute });
+        StartFuncFromImportLine({ inLinesArray: LocalLines, inNewRoute });
+        StartFuncFromRouterDotLine({ inLinesArray: LocalLines, inNewRoute });
+
         LocalFuncWriteFile({ inLinesArray: LocalLines, inEditorPath: selectedFolder });
     } catch (error) {
         console.log("aaaaaaa  : ", error.message);
@@ -42,20 +44,6 @@ const LocalFuncWriteFile = ({ inLinesArray, inEditorPath }) => {
     const activeFileFolderPath = require('path').dirname(inEditorPath);
 
     fse.writeFileSync(`${activeFileFolderPath}/${LocalFileName}`, content, 'utf-8');
-};
-
-const LocalFuncInsertRouterUse = ({ inLinesArray, inNewRoute }) => {
-    let LocalLines = inLinesArray;
-    const LocalNewRoute = inNewRoute;
-
-    const LocalToInsertLine = `router.get('/${LocalNewRoute}', Get${LocalNewRoute}Func);\r`;
-
-    const LocalOldValue = LocalLines[LocalLines.length - 2];
-
-    vscode.window.showInformationMessage(`Error: ${}`);
-
-    LocalLines.splice(LocalLines.length - 1, 0, LocalToInsertLine);
-    LocalLines.splice(LocalLines.length - 1, 0, "");
 };
 
 module.exports = { StartFunc };

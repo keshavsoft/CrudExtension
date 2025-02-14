@@ -4,7 +4,10 @@ const readline = require('readline');
 
 const CommonRegisterCommand = "NodeJs.EndPoints.NewEndPoint.Create";
 
-const { StartFunc: StartFuncFromRouter } = require("./router");
+// const { StartFunc: StartFuncFromRouter } = require("./router");
+
+const { StartFunc: StartFuncFromRoute } = require("./Route/entryFile");
+
 const { StartFunc: StartFuncFromController } = require("./controller/entryFile");
 const { StartFunc: StartFuncFromRepo } = require("./Repo/entryFile");
 const { StartFunc: StartFuncFromDal } = require("./Dal/entryFile");
@@ -39,7 +42,7 @@ const LocalFuncToActivate = async () => {
             return false;
         };
 
-        StartFuncFromRouter({
+        StartFuncFromRoute({
             inLinesArray: LocalLines, inEditorPath: selectedFolder,
             inNewRoute: LocalEndPointNeeded
         });
@@ -92,7 +95,7 @@ const processLineByLine = async ({ inFileName }) => {
         });
 
         for await (const line of rl) {
-            console.log(`Line: ${line}`);
+            // console.log(`Line: ${line}`);
             LocalLines.push(line);
             // vscode.window.showInformationMessage(`Error: ${line}`);
         };
