@@ -1,3 +1,5 @@
+const vscode = require('vscode');
+
 const fse = require('fs-extra');
 
 const CommonRouterSearch = "} from ";
@@ -7,7 +9,7 @@ const StartFunc = ({ inLinesArray, inEditorPath, inNewRoute }) => {
     try {
         const selectedFolder = inEditorPath;
         let LocalLines = inLinesArray;
-
+       
         LocalFuncInsertImportFunc({ inLinesArray: LocalLines, inNewRoute });
         LocalFuncInsertRouterUse({ inLinesArray: LocalLines, inNewRoute });
         LocalFuncWriteFile({ inLinesArray: LocalLines, inEditorPath: selectedFolder });
@@ -16,6 +18,7 @@ const StartFunc = ({ inLinesArray, inEditorPath, inNewRoute }) => {
         return error.message;
     };
 };
+
 
 const LocalFuncInsertImportFunc = ({ inLinesArray, inNewRoute }) => {
     let LocalLines = inLinesArray;

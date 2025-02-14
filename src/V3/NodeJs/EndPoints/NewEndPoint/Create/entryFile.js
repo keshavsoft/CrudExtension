@@ -2,7 +2,7 @@ const vscode = require('vscode');
 const fse = require('fs-extra');
 const readline = require('readline');
 
-const CommonRegisterCommand = "Keshav";
+const CommonRegisterCommand = "NodeJs.EndPoints.NewEndPoint.Create";
 
 const { StartFunc: StartFuncFromRouter } = require("./router");
 const { StartFunc: StartFuncFromController } = require("./controller/entryFile");
@@ -29,6 +29,16 @@ const LocalFuncToActivate = async () => {
 
         let LocalLines = await processLineByLine({ inFileName: selectedFolder });
 
+        const LocalFindEndPoint = LocalFuncCheckOldEndPoints({
+            inLinesArray: LocalLines,
+            inNewRoute: LocalEndPointNeeded
+        });
+
+        if (LocalFindEndPoint) {
+            vscode.window.showInformationMessage(`New end point: ${LocalEndPointNeeded} is already in the file.`);
+            return false;
+        };
+
         StartFuncFromRouter({
             inLinesArray: LocalLines, inEditorPath: selectedFolder,
             inNewRoute: LocalEndPointNeeded
@@ -49,12 +59,22 @@ const LocalFuncToActivate = async () => {
             inNewRoute: LocalEndPointNeeded
         });
 
-        vscode.window.showInformationMessage(`Folder created and contents copied to: ${LocalLines[LocalLines.length - 2]}`);
+        vscode.window.showInformationMessage(`Folder created and contents copied to: ${LocalEndPointNeeded}`);
     } catch (error) {
         console.log("aaaaaaa  : ", error.message);
 
         vscode.window.showErrorMessage(`Error: ${error.message}`);
     };
+};
+
+const LocalFuncCheckOldEndPoints = ({ inLinesArray, inNewRoute }) => {
+    let LocalLines = inLinesArray;
+    const LocalNewRoute = inNewRoute;
+
+    let LocalFilteredRows = LocalLines.filter((element) => element.startsWith("router.get("));
+    let LocalFind = LocalFilteredRows.find((element) => element.indexOf(LocalNewRoute) >= 0);
+
+    return LocalFind === undefined ? false : true;
 };
 
 const processLineByLine = async ({ inFileName }) => {

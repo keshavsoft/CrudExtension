@@ -3,7 +3,7 @@
   "displayName": "CrudExtension",
   "publisher": "KeshavSoft",
   "description": "KeshavSoft Extension to enhance the development of web applications",
-  "version": "0.0.36",
+  "version": "0.0.40",
   "engines": {
     "vscode": "^1.96.0"
   },
@@ -39,8 +39,8 @@
         "title": "Get the current Extension Path"
       },
       {
-        "command": "Keshav",
-        "title": "Keshav"
+        "command": "NodeJs.EndPoints.NewEndPoint.Create",
+        "title": "NodeJs EndPoints NewEndPoint Create"
       }
     ],
     "commands_23Jan": [

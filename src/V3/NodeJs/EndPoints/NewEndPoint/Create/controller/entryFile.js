@@ -40,7 +40,10 @@ const StartFunc = async ({ inEditorPath, inNewRoute }) => {
         const newFolderPath = path.join(activeFileFolderPath, "..", "..", "controllers", "getFuncs", "EntryFile.js");
         let LocalLines = await processLineByLine({ inFileName: newFolderPath });
 
-        StartFuncFromInsertCode({ inLinesArray: LocalLines, inEditorPath: newFolderPath, inNewRoute });
+        StartFuncFromInsertCode({
+            inLinesArray: LocalLines, inEditorPath: newFolderPath,
+            inNewRoute
+        });
     } catch (error) {
         console.log("aaaaaaa  : ", error.message);
         return error.message;
