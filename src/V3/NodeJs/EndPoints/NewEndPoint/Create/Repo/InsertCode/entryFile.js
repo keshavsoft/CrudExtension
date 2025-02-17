@@ -5,6 +5,8 @@ const CommonSearchForBody = "export {";
 const CommonFileName = "EntryFile.js";
 const CommonLevelName = "Dal";
 
+const { StartFunc: StartFuncFromInsertFuncBody } = require("./InsertFuncBody");
+
 const StartFunc = ({ inLinesArray, inEditorPath, inNewRoute }) => {
     try {
         const selectedFolder = inEditorPath;
@@ -13,7 +15,7 @@ const StartFunc = ({ inLinesArray, inEditorPath, inNewRoute }) => {
         let LocalLines = inLinesArray;
 
         LocalFuncInsertImportFunc({ inLinesArray: LocalLines, inNewRoute: LocalNewRoute });
-        LocalFuncInsertFuncBody({ inLinesArray: LocalLines, inNewRoute: LocalNewRoute });
+        StartFuncFromInsertFuncBody({ inLinesArray: LocalLines, inNewRoute: LocalNewRoute });
         LocalFuncInsertToExport({ inLinesArray: LocalLines, inNewRoute: LocalNewRoute });
 
         LocalFuncWriteFile({ inLinesArray: LocalLines, inEditorPath: selectedFolder });

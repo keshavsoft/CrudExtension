@@ -2,7 +2,7 @@ const fse = require('fs-extra');
 const path = require('path');
 const readline = require('readline');
 
-const { StartFunc: StartFuncFromInsertCode } = require("./insertCode");
+const { StartFunc: StartFuncFromInsertCode } = require("./InsertCode/entryFile");
 
 const processLineByLine = async ({ inFileName }) => {
     try {

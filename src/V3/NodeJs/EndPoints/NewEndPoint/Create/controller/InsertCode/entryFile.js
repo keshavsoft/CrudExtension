@@ -1,17 +1,21 @@
-const vscode = require('vscode');
-
 const fse = require('fs-extra');
 
 const CommonRouterSearch = "} from ";
 const CommonFileName = "EntryFile.js";
+const CommonLevelName = "Repo";
+
+const { StartFunc: StartFuncFromInsertFuncBody } = require("./insertFuncBody");
 
 const StartFunc = ({ inLinesArray, inEditorPath, inNewRoute }) => {
     try {
         const selectedFolder = inEditorPath;
         let LocalLines = inLinesArray;
+        const LocalNewRoute = inNewRoute;
 
-        LocalFuncInsertImportFunc({ inLinesArray: LocalLines, inNewRoute });
-        LocalFuncInsertRouterUse({ inLinesArray: LocalLines, inNewRoute });
+        LocalFuncInsertImportFunc({ inLinesArray: LocalLines, inNewRoute: LocalNewRoute });
+        StartFuncFromInsertFuncBody({ inLinesArray: LocalLines, inNewRoute: LocalNewRoute });
+        LocalFuncInsertToExport({ inLinesArray: LocalLines, inNewRoute: LocalNewRoute });
+
         LocalFuncWriteFile({ inLinesArray: LocalLines, inEditorPath: selectedFolder });
     } catch (error) {
         console.log("aaaaaaa  : ", error.message);
@@ -24,10 +28,11 @@ const LocalFuncInsertImportFunc = ({ inLinesArray, inNewRoute }) => {
     const LocalNewRoute = inNewRoute;
 
     let LocalFindIndex = LocalLines.findIndex((element) => element.startsWith(CommonRouterSearch));
-    const LocalToInsertLine = `\tGet${LocalNewRoute}Func`;
+    const LocalToInsertLine = `\tGet${LocalNewRoute}Func as Get${LocalNewRoute}Func${CommonLevelName}`;
 
+    //first insert comma in last line
     LocalLines[LocalFindIndex - 1] = LocalLines[LocalFindIndex - 1] + ",";
-
+    //then add our code
     LocalLines.splice(LocalFindIndex, 0, LocalToInsertLine);
     // LocalLines.splice(LocalFindIndex, 0, "");
 };
@@ -44,18 +49,12 @@ const LocalFuncWriteFile = ({ inLinesArray, inEditorPath }) => {
     fse.writeFileSync(`${activeFileFolderPath}/${LocalFileName}`, content, 'utf-8');
 };
 
-const LocalFuncInsertRouterUse = ({ inLinesArray, inNewRoute }) => {
+const LocalFuncInsertToExport = ({ inLinesArray, inNewRoute }) => {
     let LocalLines = inLinesArray;
     const LocalNewRoute = inNewRoute;
 
-    const LocalToInsertLine = `router.get('/${LocalNewRoute}', Get${LocalNewRoute}Func);\r`;
-
-    const LocalOldValue = LocalLines[LocalLines.length - 2];
-
-    vscode.window.showInformationMessage(`Error: ${}`);
-
-    LocalLines.splice(LocalLines.length - 1, 0, LocalToInsertLine);
-    LocalLines.splice(LocalLines.length - 1, 0, "");
+    LocalLines[LocalLines.length - 2] += ",";
+    LocalLines.splice(LocalLines.length - 1, 0, `\tGet${LocalNewRoute}Func`);
 };
 
 module.exports = { StartFunc };

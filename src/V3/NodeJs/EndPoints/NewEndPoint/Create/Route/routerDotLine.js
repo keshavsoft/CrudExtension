@@ -4,7 +4,7 @@ const StartFunc = ({ inLinesArray, inNewRoute }) => {
 
     const LocalToInsertLine = `router.get('/${LocalNewRoute}', Get${LocalNewRoute}Func);\r`;
 
-    const LocalOldValue = LocalLines[LocalLines.length - 2];
+    // const LocalOldValue = LocalLines[LocalLines.length - 2];
 
     // vscode.window.showInformationMessage(`LocalOldValue: ${LocalOldValue}`);
 

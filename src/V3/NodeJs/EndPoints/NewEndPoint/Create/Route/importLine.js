@@ -1,4 +1,4 @@
-const vscode = require('vscode');
+// const vscode = require('vscode');
 
 const CommonRouterSearch = "} from ";
 
@@ -12,7 +12,7 @@ const StartFunc = ({ inLinesArray, inNewRoute }) => {
     const LocalOldValue = LocalLines[LocalFindIndex - 1];
     // const LocalSplitValues = LocalOldValue.split(",");
 
-    vscode.window.showInformationMessage(`LocalOldValue: ${LocalOldValue.length}`);
+    // vscode.window.showInformationMessage(`LocalOldValue: ${LocalOldValue.length}`);
 
     if (LocalOldValue.length >= 50) {
         LocalLines[LocalFindIndex - 1] = LocalLines[LocalFindIndex - 1] + ",";
