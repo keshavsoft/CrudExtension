@@ -1,10 +1,9 @@
 const fse = require('fs-extra');
 
+const CommonNewRoute = "KS";
 const CommonRouterSearch = "import {";
+const CommonSearchForBody = "export {";
 const CommonFileName = "EntryFile.js";
-
-const { StartFunc: StartFuncFromInsertImport } = require("./insertImport");
-const { StartFunc: StartFuncFromInsertFuncBody } = require("./insertFuncBody");
 
 const StartFunc = ({ inLinesArray, inEditorPath, inNewRoute }) => {
     try {
@@ -13,12 +12,12 @@ const StartFunc = ({ inLinesArray, inEditorPath, inNewRoute }) => {
 
         let LocalLines = inLinesArray;
 
-        StartFuncFromInsertImport({
+        LocalFuncInsertImportFunc({
             inLinesArray: LocalLines,
             inNewRoute: LocalNewRoute
         });
 
-        StartFuncFromInsertFuncBody({
+        LocalFuncInsertFuncBody({
             inLinesArray: LocalLines,
             inNewRoute: LocalNewRoute
         });
@@ -30,6 +29,7 @@ const StartFunc = ({ inLinesArray, inEditorPath, inNewRoute }) => {
 
         LocalFuncWriteFile({ inLinesArray: LocalLines, inEditorPath: selectedFolder });
     } catch (error) {
+        console.log("aaaaaaa  : ", error.message);
         return error.message;
     };
 };
@@ -39,10 +39,30 @@ const LocalFuncInsertImportFunc = ({ inLinesArray, inNewRoute }) => {
     const LocalNewRoute = inNewRoute;
 
     let LocalFindIndex = LocalLines.findLastIndex((element) => element.startsWith(CommonRouterSearch));
-    const LocalToInsertLine = `import { StartFunc as StartFuncFromGet${LocalNewRoute} } from '../../kLowDb/ReadFromFile/${LocalNewRoute}.js';`
+    const LocalToInsertLine = `import { StartFunc as StartFuncFromGet${LocalNewRoute} } from '../../kLowDb/ReadFromFile/Get${LocalNewRoute}Func.js';`
 
     //then add our code
     LocalLines.splice(LocalFindIndex + 1, 0, LocalToInsertLine);
+    // LocalLines.splice(LocalFindIndex, 0, "");
+};
+
+const LocalFuncInsertFuncBody = ({ inLinesArray, inNewRoute }) => {
+    let LocalLines = inLinesArray;
+    const LocalNewRoute = inNewRoute;
+
+    let LocalFindIndex = LocalLines.findIndex((element) => element.startsWith(CommonSearchForBody));
+
+    const LocalToInsertArray = [
+        "",
+        `let Get${LocalNewRoute}Func = async () => {`,
+        `\tlet LocalFromLowDb = await StartFuncFromGet${LocalNewRoute}();`,
+        "",
+        `\treturn await LocalFromLowDb;`,
+        "};"
+    ];
+
+    //then add our code
+    LocalLines.splice(LocalFindIndex, 0, ...LocalToInsertArray);
     // LocalLines.splice(LocalFindIndex, 0, "");
 };
 

@@ -1,10 +1,10 @@
 const fse = require('fs-extra');
 
-const CommonRouterSearch = "import {";
+const CommonRouterSearch = "} from ";
 const CommonFileName = "EntryFile.js";
+const CommonLevelName = "Dal";
 
-const { StartFunc: StartFuncFromInsertImport } = require("./insertImport");
-const { StartFunc: StartFuncFromInsertFuncBody } = require("./insertFuncBody");
+const { StartFunc: StartFuncFromInsertFuncBody } = require("./InsertFuncBody");
 
 const StartFunc = ({ inLinesArray, inEditorPath, inNewRoute }) => {
     try {
@@ -13,20 +13,9 @@ const StartFunc = ({ inLinesArray, inEditorPath, inNewRoute }) => {
 
         let LocalLines = inLinesArray;
 
-        StartFuncFromInsertImport({
-            inLinesArray: LocalLines,
-            inNewRoute: LocalNewRoute
-        });
-
-        StartFuncFromInsertFuncBody({
-            inLinesArray: LocalLines,
-            inNewRoute: LocalNewRoute
-        });
-
-        LocalFuncInsertToExport({
-            inLinesArray: LocalLines,
-            inNewRoute: LocalNewRoute
-        });
+        LocalFuncInsertImportFunc({ inLinesArray: LocalLines, inNewRoute: LocalNewRoute });
+        StartFuncFromInsertFuncBody({ inLinesArray: LocalLines, inNewRoute: LocalNewRoute });
+        LocalFuncInsertToExport({ inLinesArray: LocalLines, inNewRoute: LocalNewRoute });
 
         LocalFuncWriteFile({ inLinesArray: LocalLines, inEditorPath: selectedFolder });
     } catch (error) {
@@ -38,11 +27,13 @@ const LocalFuncInsertImportFunc = ({ inLinesArray, inNewRoute }) => {
     let LocalLines = inLinesArray;
     const LocalNewRoute = inNewRoute;
 
-    let LocalFindIndex = LocalLines.findLastIndex((element) => element.startsWith(CommonRouterSearch));
-    const LocalToInsertLine = `import { StartFunc as StartFuncFromGet${LocalNewRoute} } from '../../kLowDb/ReadFromFile/${LocalNewRoute}.js';`
+    let LocalFindIndex = LocalLines.findIndex((element) => element.startsWith(CommonRouterSearch));
+    const LocalToInsertLine = `\tGet${LocalNewRoute}Func as Get${LocalNewRoute}Func${CommonLevelName}`;
 
+    //first insert comma in last line
+    LocalLines[LocalFindIndex - 1] = LocalLines[LocalFindIndex - 1] + ",";
     //then add our code
-    LocalLines.splice(LocalFindIndex + 1, 0, LocalToInsertLine);
+    LocalLines.splice(LocalFindIndex, 0, LocalToInsertLine);
     // LocalLines.splice(LocalFindIndex, 0, "");
 };
 

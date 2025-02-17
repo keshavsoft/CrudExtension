@@ -3,7 +3,7 @@
   "displayName": "CrudExtension",
   "publisher": "KeshavSoft",
   "description": "KeshavSoft Extension to enhance the development of web applications",
-  "version": "0.0.43",
+  "version": "0.0.45",
   "engines": {
     "vscode": "^1.96.0"
   },
@@ -41,52 +41,10 @@
       {
         "command": "NodeJs.EndPoints.NewEndPoint.Create",
         "title": "NodeJs EndPoints NewEndPoint Create"
-      }
-    ],
-    "commands_23Jan": [
-      {
-        "command": "create-folder.createFolder",
-        "title": "Create Folder Automatically"
       },
       {
-        "command": "clientJs.FetchAsPost",
-        "title": "ClientSide Js Fetch Post"
-      },
-      {
-        "command": "clientJs.FetchAsGet",
-        "title": "ClientSide Js Fetch Get"
-      },
-      {
-        "command": "clientJs.FetchAsGetConfigEndPoint",
-        "title": "ClientSide Js Fetch Get ConfigEndPoint"
-      },
-      {
-        "command": "clientJs.FetchAsGetShowDataOnly",
-        "title": "ClientSide Js Fetch Get ShowDataOnly"
-      },
-      {
-        "command": "clientJs.ToHtml.Anchor.ByClass.RefreshBSTableClass",
-        "title": "ClientSide Js ToHtml Anchor ByClass RefreshBSTableClass"
-      },
-      {
-        "command": "clientJs.ToHtml.Anchor.ByClass.RefreshBSTableClass.WithUrl",
-        "title": "ClientSide Js ToHtml Anchor ByClass RefreshBSTableClass WithUrl"
-      },
-      {
-        "command": "dynamic.FetchAsPost",
-        "title": "Dynamic Parent Directory"
-      },
-      {
-        "command": "config.CopyConfigFile",
-        "title": "Copy Config File"
-      },
-      {
-        "command": "extension.copyToClipboard",
-        "title": "copyToClipboard"
-      },
-      {
-        "command": "extension.Path",
-        "title": "Get Extension Path"
+        "command": "NodeJs.EndPoints.NewEndPoint.Check",
+        "title": "NodeJs EndPoints NewEndPoint Check"
       }
     ],
     "menus": {
