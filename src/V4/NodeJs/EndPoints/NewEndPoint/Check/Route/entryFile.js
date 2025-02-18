@@ -1,12 +1,20 @@
 const { StartFunc: StartFuncFromRouterDotLine } = require("./routerDotLine");
 const { StartFunc: StartFuncFromImportLine } = require("./importLine");
 
-const StartFunc = ({ inLinesArray, inNewRoute }) => {
+const StartFunc = ({ inLinesArray, inCheckRoute }) => {
     try {
         let LocalLines = inLinesArray;
+        const LocalCheckRoute = inCheckRoute;
 
-        StartFuncFromImportLine({ inLinesArray: LocalLines, inNewRoute });
-        StartFuncFromRouterDotLine({ inLinesArray: LocalLines, inNewRoute });
+        StartFuncFromImportLine({
+            inLinesArray: LocalLines,
+            inCheckRoute: LocalCheckRoute
+        });
+
+        StartFuncFromRouterDotLine({
+            inLinesArray: LocalLines,
+            inCheckRoute: LocalCheckRoute
+        });
     } catch (error) {
         return error.message;
     };

@@ -1,51 +1,23 @@
-const fse = require('fs-extra');
-const path = require('path');
-const readline = require('readline');
+const vscode = require('vscode');
 
-const { StartFunc: StartFuncFromInsertCode } = require("./InsertCode/entryFile");
+const CommonSearchStart = "import {";
+const CommonSearchEnd = "} from ";
 
-const processLineByLine = async ({ inFileName }) => {
-    try {
-        const fileStream = fse.createReadStream(inFileName);
-        let LocalLines = [];
+const StartFunc = ({ inLinesArray, inCheckRoute }) => {
+    let LocalLines = inLinesArray;
+    const LocalCheckRoute = inCheckRoute;
 
-        fileStream.on('error', (err) => {
-            console.error(`Error reading file: ${err.message}`);
-        });
+    const LocalFindStartIndex = LocalLines.findIndex((element) => element.startsWith(CommonSearchStart));
+    const LocalFindEndIndex = LocalLines.findIndex((element) => element.startsWith(CommonSearchEnd));
+    const LocalSliceArray = LocalLines.slice(LocalFindStartIndex + 1, LocalFindEndIndex);
+    const LocalAsSingleLine = LocalSliceArray.toString();
+    const LocalToSearch = `Get${LocalCheckRoute}Funcs`;
+    const LocalSearchIndex = LocalAsSingleLine.search(LocalToSearch);
 
-        const rl = readline.createInterface({
-            input: fileStream,
-            crlfDelay: Infinity
-        });
+    if (LocalSearchIndex === -1) {
+        vscode.window.showInformationMessage(`${LocalCheckRoute} not found in import controllers`);
+    } else {
 
-        for await (const line of rl) {
-            // console.log(`Line: ${line}`);
-            LocalLines.push(line);
-            // vscode.window.showInformationMessage(`Error: ${line}`);
-        };
-
-        return LocalLines;
-    } catch (err) {
-        console.error(`Error processing file: ${err.message}`);
-    }
-};
-
-const StartFunc = async ({ inEditorPath, inNewRoute }) => {
-    try {
-        const activeFilePath = inEditorPath;
-        // let LocalLines = inLinesArray;
-
-        const activeFileFolderPath = path.dirname(activeFilePath);
-
-        const newFolderPath = path.join(activeFileFolderPath, "..", "..", "controllers", "getFuncs", "EntryFile.js");
-        let LocalLines = await processLineByLine({ inFileName: newFolderPath });
-
-        StartFuncFromInsertCode({
-            inLinesArray: LocalLines, inEditorPath: newFolderPath,
-            inNewRoute
-        });
-    } catch (error) {
-        return error.message;
     };
 };
 

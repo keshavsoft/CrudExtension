@@ -4,9 +4,8 @@ const readline = require('readline');
 
 const CommonRegisterCommand = "NodeJs.EndPoints.NewEndPoint.Check";
 
-// const { StartFunc: StartFuncFromRouter } = require("./router");
-
 const { StartFunc: StartFuncFromRoute } = require("./Route/entryFile");
+const { StartFunc: StartFuncFromController } = require("./Controller/entryFile");
 
 const StartFunc = () => {
     activateFunc();
@@ -30,13 +29,13 @@ const LocalFuncToActivate = async () => {
 
         StartFuncFromRoute({
             inLinesArray: LocalLines, inEditorPath: selectedFolder,
-            inNewRoute: LocalEndPointNeeded
+            inCheckRoute: LocalEndPointNeeded
         });
 
-        // StartFuncFromController({
-        //     inLinesArray: LocalLines, inEditorPath: selectedFolder,
-        //     inNewRoute: LocalEndPointNeeded
-        // });
+        StartFuncFromController({
+            inLinesArray: LocalLines, inEditorPath: selectedFolder,
+            inCheckRoute: LocalEndPointNeeded
+        });
 
         // StartFuncFromRepo({
         //     inLinesArray: LocalLines, inEditorPath: selectedFolder,

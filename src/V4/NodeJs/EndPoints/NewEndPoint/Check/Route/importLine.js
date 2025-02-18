@@ -3,15 +3,22 @@ const vscode = require('vscode');
 const CommonSearchStart = "import {";
 const CommonSearchEnd = "} from ";
 
-const StartFunc = ({ inLinesArray, inNewRoute }) => {
+const StartFunc = ({ inLinesArray, inCheckRoute }) => {
     let LocalLines = inLinesArray;
-    const LocalNewRoute = inNewRoute;
+    const LocalCheckRoute = inCheckRoute;
 
     const LocalFindStartIndex = LocalLines.findIndex((element) => element.startsWith(CommonSearchStart));
     const LocalFindEndIndex = LocalLines.findIndex((element) => element.startsWith(CommonSearchEnd));
+    const LocalSliceArray = LocalLines.slice(LocalFindStartIndex + 1, LocalFindEndIndex);
+    const LocalAsSingleLine = LocalSliceArray.toString();
+    const LocalToSearch = `Get${LocalCheckRoute}Funcs`;
+    const LocalSearchIndex = LocalAsSingleLine.search(LocalToSearch);
 
-    vscode.window.showInformationMessage(LocalLines[LocalFindStartIndex]);
-    vscode.window.showInformationMessage(LocalLines[LocalFindEndIndex]);
+    if (LocalSearchIndex === -1) {
+        vscode.window.showInformationMessage(`${LocalCheckRoute} not found in import of routes`);
+    } else {
+
+    };
 };
 
 module.exports = { StartFunc };
