@@ -1,12 +1,29 @@
+const vscode = require('vscode');
 const fs = require('fs');
 
 const StartFunc = async ({ inCreatePath, inHtmlIdNeeded }) => {
     const LocalToCreatePath = inCreatePath;
+    const LocalHtmlIdNeeded = inHtmlIdNeeded;
+    const LocalPathNeeded = `${LocalToCreatePath}/AddListeners/${LocalHtmlIdNeeded}`;
 
-    await fs.mkdirSync(`${LocalToCreatePath}/AddListeners`);
-    await fs.mkdirSync(`${LocalToCreatePath}/AddListeners/${inHtmlIdNeeded}`);
-    await LocalFuncForButtonClickFile({ inCreatePath, inHtmlIdNeeded });
-    await LocalFuncForEntryFile({ inCreatePath, inHtmlIdNeeded });
+    try {
+        fs.accessSync(LocalPathNeeded, fs.constants.F_OK);
+
+        vscode.window.showInformationMessage(`${LocalPathNeeded} folder is already present!`);
+    } catch (err) {
+        await fs.mkdirSync(LocalPathNeeded);
+        await LocalFuncForButtonClickFile({
+            inCreatePath: LocalToCreatePath,
+            inHtmlIdNeeded: LocalHtmlIdNeeded
+        });
+
+        // await LocalFuncForAddListenersAndHtmlNeededEntryFile({
+        //     inCreatePath: LocalToCreatePath,
+        //     inHtmlIdNeeded: LocalHtmlIdNeeded
+        // });
+
+        // await LocalFuncForEntryFile({ inCreatePath, inHtmlIdNeeded });
+    };
 };
 
 const LocalFuncForButtonClickFile = async ({ inCreatePath, inHtmlIdNeeded }) => {
