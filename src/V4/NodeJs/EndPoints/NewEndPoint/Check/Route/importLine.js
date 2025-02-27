@@ -11,11 +11,12 @@ const StartFunc = ({ inLinesArray, inCheckRoute }) => {
     const LocalFindEndIndex = LocalLines.findIndex((element) => element.startsWith(CommonSearchEnd));
     const LocalSliceArray = LocalLines.slice(LocalFindStartIndex + 1, LocalFindEndIndex);
     const LocalAsSingleLine = LocalSliceArray.toString();
-    const LocalToSearch = `Get${LocalCheckRoute}Funcs`;
+    const LocalToSearch = `Get${LocalCheckRoute}Func`;
     const LocalSearchIndex = LocalAsSingleLine.search(LocalToSearch);
 
     if (LocalSearchIndex === -1) {
         vscode.window.showInformationMessage(`${LocalCheckRoute} not found in import of routes`);
+        return false;
     } else {
 
     };

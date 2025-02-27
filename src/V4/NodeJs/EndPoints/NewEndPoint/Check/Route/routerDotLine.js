@@ -1,15 +1,26 @@
+const vscode = require('vscode');
+
+const CommonSearchStart = "router.get(";
+const CommonSearchEnd = "router.get(";
+
 const StartFunc = ({ inLinesArray, inCheckRoute }) => {
     let LocalLines = inLinesArray;
     const LocalCheckRoute = inCheckRoute;
 
-    // const LocalToInsertLine = `router.get('/${LocalNewRoute}', Get${LocalNewRoute}Func);\r`;
+    const LocalFindStartIndex = LocalLines.findIndex((element) => element.startsWith(CommonSearchStart));
+    const LocalFindEndIndex = LocalLines.findLastIndex((element) => element.startsWith(CommonSearchEnd));
 
-    // const LocalOldValue = LocalLines[LocalLines.length - 2];
+    const LocalSliceArray = LocalLines.slice(LocalFindStartIndex + 1, LocalFindEndIndex);
+    const LocalAsSingleLine = LocalSliceArray.toString();
+    const LocalToSearch = `Get${LocalCheckRoute}Func)`;
+    const LocalSearchIndex = LocalAsSingleLine.search(LocalToSearch);
 
-    // vscode.window.showInformationMessage(`LocalOldValue: ${LocalOldValue}`);
+    if (LocalSearchIndex === -1) {
+        vscode.window.showInformationMessage(`${LocalCheckRoute} not found in dot of routes`);
+        return false;
+    } else {
 
-    // LocalLines.splice(LocalLines.length - 2, 0, LocalToInsertLine);
-    // LocalLines.splice(LocalLines.length - 1, 0, "");
+    };
 };
 
 module.exports = { StartFunc };

@@ -6,15 +6,19 @@ const StartFunc = ({ inLinesArray, inCheckRoute }) => {
         let LocalLines = inLinesArray;
         const LocalCheckRoute = inCheckRoute;
 
-        StartFuncFromImportLine({
+        const LocalFromImport = StartFuncFromImportLine({
             inLinesArray: LocalLines,
             inCheckRoute: LocalCheckRoute
         });
 
-        StartFuncFromRouterDotLine({
+        const LocalFromDot = StartFuncFromRouterDotLine({
             inLinesArray: LocalLines,
             inCheckRoute: LocalCheckRoute
         });
+
+        if (LocalFromImport === false || LocalFromDot === false) {
+            return false;
+        };
     } catch (error) {
         return error.message;
     };

@@ -27,10 +27,14 @@ const LocalFuncToActivate = async () => {
 
         let LocalLines = await processLineByLine({ inFileName: selectedFolder });
 
-        StartFuncFromRoute({
+        const LocalFromRoute = StartFuncFromRoute({
             inLinesArray: LocalLines, inEditorPath: selectedFolder,
             inCheckRoute: LocalEndPointNeeded
         });
+
+        if (LocalFromRoute === false) {
+            return await false;
+        };
 
         StartFuncFromController({
             inLinesArray: LocalLines, inEditorPath: selectedFolder,
@@ -47,7 +51,7 @@ const LocalFuncToActivate = async () => {
         //     inNewRoute: LocalEndPointNeeded
         // });
 
-        vscode.window.showInformationMessage(`Folder created and contents copied to: ${LocalEndPointNeeded}`);
+        // vscode.window.showInformationMessage(`Folder created and contents copied to: ${LocalEndPointNeeded}`);
     } catch (error) {
         vscode.window.showErrorMessage(`Error: ${error.message}`);
     };
