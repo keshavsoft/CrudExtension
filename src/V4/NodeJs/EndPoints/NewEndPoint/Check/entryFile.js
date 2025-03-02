@@ -51,7 +51,7 @@ const LocalFuncToActivate = async () => {
         //     inNewRoute: LocalEndPointNeeded
         // });
 
-        // vscode.window.showInformationMessage(`Folder created and contents copied to: ${LocalEndPointNeeded}`);
+        vscode.window.showInformationMessage(`Your needed EndPoint ${LocalEndPointNeeded} is looking good in all levels.`);
     } catch (error) {
         vscode.window.showErrorMessage(`Error: ${error.message}`);
     };
