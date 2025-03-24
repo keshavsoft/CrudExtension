@@ -4,7 +4,7 @@ const path = require('path');
 
 const { getSelectedFolderPath } = require('../../../../../CommonFuncs/getSelectedFolderPath');
 
-const CommonRegisterCommand = "NodeJs Task NewTask Create";
+const CommonRegisterCommand = "NodeJs.Task.NewTask.Create";
 
 const StartFunc = () => {
     activateFunc();
