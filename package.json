@@ -3,7 +3,7 @@
   "displayName": "CrudExtension",
   "publisher": "KeshavSoft",
   "description": "KeshavSoft Extension to enhance the development of web applications",
-  "version": "0.0.53",
+  "version": "0.0.54",
   "engines": {
     "vscode": "^1.96.0"
   },
@@ -14,6 +14,11 @@
   "main": "./extension.js",
   "contributes": {
     "commands": [
+      {
+        "command": "Keshav",
+        "title": "Keshav"
+      },
+      
       {
         "command": "ClientSide.Js.ToHtml.TotalJs.AsModule.Show.FixedColumns.UrlFromJson",
         "title": "ClientSide Js ToHtml TotalJs AsModule Show FixedColumns UrlFromJson"
