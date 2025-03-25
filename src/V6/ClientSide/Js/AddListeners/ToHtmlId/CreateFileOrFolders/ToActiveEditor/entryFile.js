@@ -2,6 +2,7 @@ const fse = require('fs-extra');
 const readline = require('readline');
 
 const { StartFunc: StartFuncFromInsertCode } = require("./InsertCode/entryFile");
+const { StartFunc: StartFuncFromEmptyFile } = require("./emptyFile");
 
 const StartFunc = async ({ inActiveEditorPath, inHtmlIdNeeded }) => {
     const LocalAlterPath = inActiveEditorPath;
@@ -9,10 +10,17 @@ const StartFunc = async ({ inActiveEditorPath, inHtmlIdNeeded }) => {
 
     let LocalLines = await processLineByLine({ inFileName: LocalAlterPath });
 
-    StartFuncFromInsertCode({
-        inLinesArray: LocalLines, inAlterPath: LocalAlterPath,
-        inHtmlIdNeeded: LocalHtmlIdNeeded
-    });
+    if (LocalLines.length === 0) {
+        StartFuncFromEmptyFile({
+            inCreatePath: LocalAlterPath,
+            inHtmlIdNeeded: LocalHtmlIdNeeded
+        });
+    } else {
+        StartFuncFromInsertCode({
+            inLinesArray: LocalLines, inAlterPath: LocalAlterPath,
+            inHtmlIdNeeded: LocalHtmlIdNeeded
+        });
+    };
 };
 
 const processLineByLine = async ({ inFileName }) => {
