@@ -3,7 +3,7 @@
   "displayName": "CrudExtension",
   "publisher": "KeshavSoft",
   "description": "KeshavSoft Extension to enhance the development of web applications",
-  "version": "0.0.62",
+  "version": "0.0.63",
   "engines": {
     "vscode": "^1.96.0"
   },
@@ -49,6 +49,10 @@
       {
         "command": "ClientSide.Js.AddListeners.ToHtmlId",
         "title": "Cs Js AddLists ToHtmlId"
+      },
+      {
+        "command": "ClientSide.Js.FetchFuncs.AsModule.Methods.Get",
+        "title": "Cs Js FetchFuncs AsMod Met Get"
       },
       {
         "command": "extension.Path",
