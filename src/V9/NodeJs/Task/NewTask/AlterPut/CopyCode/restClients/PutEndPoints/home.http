@@ -1,0 +1,4 @@
+PUT http://localhost:7328/binV4/StudentNames/Alter/AsIs/1
+Content-Type: application/json
+
+{"StudentName":"Keshav3","EntranceRank":3316}
