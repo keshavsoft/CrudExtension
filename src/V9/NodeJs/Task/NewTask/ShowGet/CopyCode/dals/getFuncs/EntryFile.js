@@ -1,4 +1,4 @@
-import { StartFunc as ReadFromFile } from '../../kLowDb/ReadFromFile/getFunc.js';
+import { StartFunc as ReadFromFile } from '../../kLowDb/getFunc.js';
 
 let GetFunc = () => {
     let LocalFromLowDb = ReadFromFile();
