@@ -27,7 +27,7 @@ const LocalFuncInsertImportFunc = ({ inLinesArray, inNewRoute }) => {
     const LocalNewRoute = inNewRoute;
 
     let LocalFindIndex = LocalLines.findIndex((element) => element.startsWith(CommonRouterSearch));
-    const LocalToInsertLine = `\tPost${LocalNewRoute}Func as Get${LocalNewRoute}Func${CommonLevelName}`;
+    const LocalToInsertLine = `\tPost${LocalNewRoute}Func as Post${LocalNewRoute}Func${CommonLevelName}`;
 
     //first insert comma in last line
     LocalLines[LocalFindIndex - 1] = LocalLines[LocalFindIndex - 1] + ",";

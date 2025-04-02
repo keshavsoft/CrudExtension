@@ -5,7 +5,7 @@ const StartFunc = ({ inLinesArray, inNewRoute }) => {
     const LocalNewRoute = inNewRoute;
 
     let LocalFindIndex = LocalLines.findIndex((element) => element.startsWith(CommonRouterSearch));
-    const LocalToInsertLine = `Get${LocalNewRoute}Func`;
+    const LocalToInsertLine = `Post${LocalNewRoute}Func`;
 
     const LocalOldValue = LocalLines[LocalFindIndex - 1];
 
