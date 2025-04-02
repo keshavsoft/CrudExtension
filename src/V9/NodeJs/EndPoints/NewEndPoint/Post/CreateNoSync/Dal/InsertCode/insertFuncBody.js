@@ -1,5 +1,4 @@
 const CommonSearchForBody = "export {";
-const CommonLevelName = "Dal";
 
 const StartFunc = ({ inLinesArray, inNewRoute }) => {
     let LocalLines = inLinesArray;
@@ -9,9 +8,9 @@ const StartFunc = ({ inLinesArray, inNewRoute }) => {
 
     const LocalToInsertArray = [
         `let Get${LocalNewRoute}Func = () => {`,
-        `\tlet LocalFrom${CommonLevelName} = Get${LocalNewRoute}Func${CommonLevelName}();`,
+        `\tlet LocalFromLowDb = StartFuncFromPost${LocalNewRoute}();`,
         "",
-        `\treturn LocalFrom${CommonLevelName};`,
+        `\treturn await LocalFromLowDb;`,
         "};"
     ];
 
@@ -19,7 +18,6 @@ const StartFunc = ({ inLinesArray, inNewRoute }) => {
         inToInsertIndex: LocalFindIndex,
         inLinesArray: LocalLines
     });
-
     //then add our code
     LocalLines.splice(LocalFindIndex, 0, ...LocalToInsertArray);
 };

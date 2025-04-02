@@ -1,5 +1,5 @@
 const CommonSearchForBody = "export {";
-const CommonLevelName = "Dal";
+const CommonLevelName = "Repo";
 
 const StartFunc = ({ inLinesArray, inNewRoute }) => {
     let LocalLines = inLinesArray;
@@ -8,10 +8,15 @@ const StartFunc = ({ inLinesArray, inNewRoute }) => {
     let LocalFindIndex = LocalLines.findIndex((element) => element.startsWith(CommonSearchForBody));
 
     const LocalToInsertArray = [
-        `let Get${LocalNewRoute}Func = () => {`,
-        `\tlet LocalFrom${CommonLevelName} = Get${LocalNewRoute}Func${CommonLevelName}();`,
+        `let Get${LocalNewRoute}Func = (req, res) => {`,
+        `\tlet LocalFromRepo = Post${LocalNewRoute}Func${CommonLevelName}();`,
         "",
-        `\treturn LocalFrom${CommonLevelName};`,
+        "\tif (LocalFromRepo === false) {",
+        "\t\tres.status(500).send(LocalFromRepo);",
+        "\t\treturn;",
+        "\t};",
+        "",
+        "\tres.status(200).send(JSON.stringify(LocalFromRepo));",
         "};"
     ];
 
@@ -22,6 +27,7 @@ const StartFunc = ({ inLinesArray, inNewRoute }) => {
 
     //then add our code
     LocalLines.splice(LocalFindIndex, 0, ...LocalToInsertArray);
+    // LocalLines.splice(LocalFindIndex, 0, "");
 };
 
 const LocalFuncHandleEmptyLines = ({ inToInsertIndex, inLinesArray }) => {

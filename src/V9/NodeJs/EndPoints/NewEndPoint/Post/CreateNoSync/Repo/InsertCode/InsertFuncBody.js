@@ -9,7 +9,7 @@ const StartFunc = ({ inLinesArray, inNewRoute }) => {
 
     const LocalToInsertArray = [
         `let Get${LocalNewRoute}Func = () => {`,
-        `\tlet LocalFrom${CommonLevelName} = Get${LocalNewRoute}Func${CommonLevelName}();`,
+        `\tlet LocalFrom${CommonLevelName} = Post${LocalNewRoute}Func${CommonLevelName}();`,
         "",
         `\treturn LocalFrom${CommonLevelName};`,
         "};"

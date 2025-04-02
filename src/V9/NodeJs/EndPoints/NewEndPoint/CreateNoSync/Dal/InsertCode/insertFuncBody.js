@@ -7,8 +7,8 @@ const StartFunc = ({ inLinesArray, inNewRoute }) => {
     let LocalFindIndex = LocalLines.findIndex((element) => element.startsWith(CommonSearchForBody));
 
     const LocalToInsertArray = [
-        `let Get${LocalNewRoute}Func = async () => {`,
-        `\tlet LocalFromLowDb = await StartFuncFromGet${LocalNewRoute}();`,
+        `let Get${LocalNewRoute}Func = () => {`,
+        `\tlet LocalFromLowDb = StartFuncFromGet${LocalNewRoute}();`,
         "",
         `\treturn await LocalFromLowDb;`,
         "};"
@@ -20,7 +20,6 @@ const StartFunc = ({ inLinesArray, inNewRoute }) => {
     });
     //then add our code
     LocalLines.splice(LocalFindIndex, 0, ...LocalToInsertArray);
-    // LocalLines.splice(LocalFindIndex, 0, "");
 };
 
 const LocalFuncHandleEmptyLines = ({ inToInsertIndex, inLinesArray }) => {

@@ -2,7 +2,7 @@ const fse = require('fs-extra');
 const path = require('path');
 const readline = require('readline');
 
-const { StartFunc: StartFuncFromInsertCode } = require("./insertCode/entryFile");
+const { StartFunc: StartFuncFromInsertCode } = require("./InsertCode/entryFile");
 
 const processLineByLine = async ({ inFileName }) => {
     try {
@@ -31,16 +31,15 @@ const processLineByLine = async ({ inFileName }) => {
 const StartFunc = async ({ inEditorPath, inNewRoute }) => {
     try {
         const activeFilePath = inEditorPath;
-        const LocalNewRoute = inNewRoute;
 
         const activeFileFolderPath = path.dirname(activeFilePath);
 
-        const newFolderPath = path.join(activeFileFolderPath, "..", "..", "repos", "getFuncs", "EntryFile.js");
+        const newFolderPath = path.join(activeFileFolderPath, "..", "..", "controllers", "getFuncs", "EntryFile.js");
         let LocalLines = await processLineByLine({ inFileName: newFolderPath });
 
         StartFuncFromInsertCode({
             inLinesArray: LocalLines, inEditorPath: newFolderPath,
-            inNewRoute: LocalNewRoute
+            inNewRoute
         });
     } catch (error) {
         return error.message;
