@@ -3,7 +3,7 @@
   "displayName": "CrudExtension",
   "publisher": "KeshavSoft",
   "description": "KeshavSoft Extension to enhance the development of web applications",
-  "version": "0.0.67",
+  "version": "0.0.68",
   "engines": {
     "vscode": "^1.96.0"
   },
@@ -89,6 +89,10 @@
       {
         "command": "NodeJs.Task.NewTask.AggrFuncsGet",
         "title": "NodeJs Task NewTask AggrFuncsGet"
+      },
+      {
+        "command": "NodeJs.EndPoints.NewEndPoint.CreateNoSync",
+        "title": "NodeJs EndPoints NewEndPoint CreateNoSync"
       },
       {
         "command": "KChakri",
