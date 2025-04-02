@@ -5,6 +5,7 @@ const CommonFileName = "EntryFile.js";
 
 const { StartFunc: StartFuncFromInsertImport } = require("./insertImport");
 const { StartFunc: StartFuncFromInsertFuncBody } = require("./insertFuncBody");
+const { StartFunc: StartFuncFromInsertToExport } = require("./insertToExport");
 
 const StartFunc = ({ inLinesArray, inEditorPath, inNewRoute }) => {
     try {
@@ -23,7 +24,7 @@ const StartFunc = ({ inLinesArray, inEditorPath, inNewRoute }) => {
             inNewRoute: LocalNewRoute
         });
 
-        LocalFuncInsertToExport({
+        StartFuncFromInsertToExport({
             inLinesArray: LocalLines,
             inNewRoute: LocalNewRoute
         });
@@ -32,18 +33,6 @@ const StartFunc = ({ inLinesArray, inEditorPath, inNewRoute }) => {
     } catch (error) {
         return error.message;
     };
-};
-
-const LocalFuncInsertImportFunc = ({ inLinesArray, inNewRoute }) => {
-    let LocalLines = inLinesArray;
-    const LocalNewRoute = inNewRoute;
-
-    let LocalFindIndex = LocalLines.findLastIndex((element) => element.startsWith(CommonRouterSearch));
-    const LocalToInsertLine = `import { StartFunc as StartFuncFromGet${LocalNewRoute} } from '../../kLowDb/ReadFromFile/${LocalNewRoute}.js';`
-
-    //then add our code
-    LocalLines.splice(LocalFindIndex + 1, 0, LocalToInsertLine);
-    // LocalLines.splice(LocalFindIndex, 0, "");
 };
 
 const LocalFuncWriteFile = ({ inLinesArray, inEditorPath }) => {
@@ -56,14 +45,6 @@ const LocalFuncWriteFile = ({ inLinesArray, inEditorPath }) => {
     const activeFileFolderPath = require('path').dirname(inEditorPath);
 
     fse.writeFileSync(`${activeFileFolderPath}/${LocalFileName}`, content, 'utf-8');
-};
-
-const LocalFuncInsertToExport = ({ inLinesArray, inNewRoute }) => {
-    let LocalLines = inLinesArray;
-    const LocalNewRoute = inNewRoute;
-
-    LocalLines[LocalLines.length - 2] += ",";
-    LocalLines.splice(LocalLines.length - 1, 0, `\tGet${LocalNewRoute}Func`);
 };
 
 module.exports = { StartFunc };
