@@ -8,7 +8,7 @@ const StartFunc = ({ inLinesArray, inNewRoute }) => {
     let LocalFindIndex = LocalLines.findIndex((element) => element.startsWith(CommonSearchForBody));
 
     const LocalToInsertArray = [
-        `let Get${LocalNewRoute}Func = (req, res) => {`,
+        `let Post${LocalNewRoute}Func = (req, res) => {`,
         `\tlet LocalFromRepo = Post${LocalNewRoute}Func${CommonLevelName}();`,
         "",
         "\tif (LocalFromRepo === false) {",

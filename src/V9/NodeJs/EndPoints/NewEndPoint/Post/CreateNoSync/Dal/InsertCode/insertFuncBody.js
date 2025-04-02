@@ -7,7 +7,7 @@ const StartFunc = ({ inLinesArray, inNewRoute }) => {
     let LocalFindIndex = LocalLines.findIndex((element) => element.startsWith(CommonSearchForBody));
 
     const LocalToInsertArray = [
-        `let Get${LocalNewRoute}Func = () => {`,
+        `let Post${LocalNewRoute}Func = () => {`,
         `\tlet LocalFromLowDb = StartFuncFromPost${LocalNewRoute}();`,
         "",
         `\treturn await LocalFromLowDb;`,
