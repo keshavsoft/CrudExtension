@@ -1,6 +1,5 @@
 const fse = require('fs-extra');
 
-const CommonRouterSearch = "import {";
 const CommonFileName = "EntryFile.js";
 
 const { StartFunc: StartFuncFromInsertImport } = require("./insertImport");

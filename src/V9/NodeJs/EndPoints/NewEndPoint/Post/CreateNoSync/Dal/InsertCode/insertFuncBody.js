@@ -10,7 +10,7 @@ const StartFunc = ({ inLinesArray, inNewRoute }) => {
         `let Post${LocalNewRoute}Func = () => {`,
         `\tlet LocalFromLowDb = StartFuncFromPost${LocalNewRoute}();`,
         "",
-        `\treturn await LocalFromLowDb;`,
+        `\treturn LocalFromLowDb;`,
         "};"
     ];
 
