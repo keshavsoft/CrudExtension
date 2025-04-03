@@ -99,6 +99,14 @@
         "title": "NodeJs EndPoints NewEndPoint Post CreateNoSync"
       },
       {
+        "command": "NodeJs.EndPoints.NewEndPoint.Get.CreateNoSync",
+        "title": "NodeJs EndPoints NewEndPoint Get CreateNoSync"
+      },
+      {
+        "command": "NodeJs.EndPoints.NewEndPoint.Get.CreateAsync",
+        "title": "NodeJs EndPoints NewEndPoint Get CreateAsync"
+      },
+      {
         "command": "KChakri",
         "title": "KChakri"
       },
