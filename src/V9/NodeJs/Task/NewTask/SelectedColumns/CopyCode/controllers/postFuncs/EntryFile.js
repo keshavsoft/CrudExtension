@@ -2,10 +2,10 @@ import {
     postDefaultFunc as postDefaultFuncFromRepo
 } from '../../repos/postFuncs/EntryFile.js';
 
-let postFilterDataFromBodyFunc = async (req, res) => {
+let postFilterDataFromBodyFunc = (req, res) => {
     let LocalRequestBody = req.body;
 
-    let LocalFromRepo = await postDefaultFuncFromRepo({ inRequestBody: LocalRequestBody });
+    let LocalFromRepo = postDefaultFuncFromRepo({ inRequestBody: LocalRequestBody });
 
     if (LocalFromRepo === false) {
         res.status(500).send(LocalFromRepo.KReason);

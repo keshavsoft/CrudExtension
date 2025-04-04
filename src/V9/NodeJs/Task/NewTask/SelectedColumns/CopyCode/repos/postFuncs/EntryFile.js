@@ -2,7 +2,7 @@ import {
     postDefaultFunc as postDefaultFuncFromDal,
 } from '../../dals/postFuncs/EntryFile.js';
 
-let postDefaultFunc = async ({ inRequestBody }) => {
+let postDefaultFunc = ({ inRequestBody }) => {
     return postDefaultFuncFromDal({ inRequestBody });
 };
 
