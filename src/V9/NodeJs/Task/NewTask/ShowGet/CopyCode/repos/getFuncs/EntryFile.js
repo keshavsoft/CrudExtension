@@ -2,7 +2,7 @@ import {
     GetFunc as GetFuncDal
 } from '../../dals/getFuncs/EntryFile.js';
 
-let GetFunc = async () => {
+let GetFunc = () => {
     return GetFuncDal();
 };
 

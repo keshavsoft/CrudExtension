@@ -1,4 +1,4 @@
-import { StartFunc as StartFuncPullData } from "../../../CommonPull/kLowDb/PullData/returnAsArray.js";
+import { StartFunc as StartFuncPullData } from "../../CommonPull/kLowDb/PullData/returnAsArray.js";
 
 let StartFunc = () => {
   let LocalReturnData = { KTF: false };
