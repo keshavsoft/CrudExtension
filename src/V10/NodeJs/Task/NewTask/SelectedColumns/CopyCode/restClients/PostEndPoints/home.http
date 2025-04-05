@@ -1,0 +1,4 @@
+POST http://localhost:7328/binV4/StudentNames/SelectedColumns
+Content-Type: application/json
+
+["StudentName","Mobile"]
