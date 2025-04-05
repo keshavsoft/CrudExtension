@@ -1,11 +1,12 @@
 const CommonRouterSearch = "} from ";
+const CommonMethod = "Get";
 
 const StartFunc = ({ inLinesArray, inNewRoute }) => {
     let LocalLines = inLinesArray;
     const LocalNewRoute = inNewRoute;
 
     let LocalFindIndex = LocalLines.findIndex((element) => element.startsWith(CommonRouterSearch));
-    const LocalToInsertLine = `Post${LocalNewRoute}Func`;
+    const LocalToInsertLine = `${CommonMethod}${LocalNewRoute}Func`;
 
     const LocalOldValue = LocalLines[LocalFindIndex - 1];
 

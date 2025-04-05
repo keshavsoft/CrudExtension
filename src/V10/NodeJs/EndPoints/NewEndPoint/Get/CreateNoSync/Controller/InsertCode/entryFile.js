@@ -3,6 +3,7 @@ const fse = require('fs-extra');
 const CommonRouterSearch = "} from ";
 const CommonFileName = "EntryFile.js";
 const CommonLevelName = "Repo";
+const CommonMethod = "Get";
 
 const { StartFunc: StartFuncFromInsertFuncBody } = require("./insertFuncBody");
 
@@ -27,7 +28,7 @@ const LocalFuncInsertImportFunc = ({ inLinesArray, inNewRoute }) => {
     const LocalNewRoute = inNewRoute;
 
     let LocalFindIndex = LocalLines.findIndex((element) => element.startsWith(CommonRouterSearch));
-    const LocalToInsertLine = `\tPost${LocalNewRoute}Func as Post${LocalNewRoute}Func${CommonLevelName}`;
+    const LocalToInsertLine = `\t${CommonMethod}${LocalNewRoute}Func as ${CommonMethod}${LocalNewRoute}Func${CommonLevelName}`;
 
     //first insert comma in last line
     LocalLines[LocalFindIndex - 1] = LocalLines[LocalFindIndex - 1] + ",";
@@ -52,7 +53,7 @@ const LocalFuncInsertToExport = ({ inLinesArray, inNewRoute }) => {
     const LocalNewRoute = inNewRoute;
 
     LocalLines[LocalLines.length - 2] += ",";
-    LocalLines.splice(LocalLines.length - 1, 0, `\tPost${LocalNewRoute}Func`);
+    LocalLines.splice(LocalLines.length - 1, 0, `\t${CommonMethod}${LocalNewRoute}Func`);
 };
 
 module.exports = { StartFunc };

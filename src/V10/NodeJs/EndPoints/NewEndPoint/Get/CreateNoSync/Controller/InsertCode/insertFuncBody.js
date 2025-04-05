@@ -1,5 +1,6 @@
 const CommonSearchForBody = "export {";
 const CommonLevelName = "Repo";
+const CommonMethod = "Get";
 
 const StartFunc = ({ inLinesArray, inNewRoute }) => {
     let LocalLines = inLinesArray;
@@ -8,15 +9,15 @@ const StartFunc = ({ inLinesArray, inNewRoute }) => {
     let LocalFindIndex = LocalLines.findIndex((element) => element.startsWith(CommonSearchForBody));
 
     const LocalToInsertArray = [
-        `let Post${LocalNewRoute}Func = (req, res) => {`,
-        `\tlet LocalFromRepo = Post${LocalNewRoute}Func${CommonLevelName}();`,
+        `let ${CommonMethod}${LocalNewRoute}Func = (req, res) => {`,
+        `\tlet LocalFromRepo = ${CommonMethod}${LocalNewRoute}Func${CommonLevelName}();`,
         "",
         "\tif (LocalFromRepo === false) {",
         "\t\tres.status(500).send(LocalFromRepo);",
         "\t\treturn;",
         "\t};",
         "",
-        "\tres.status(200).send(JSON.stringify(LocalFromRepo));",
+        "\tres.status(200).send(JSON.stringify(LocalFromRepo.JsonData));",
         "};"
     ];
 
