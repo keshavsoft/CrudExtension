@@ -3,7 +3,7 @@
   "displayName": "CrudExtension",
   "publisher": "KeshavSoft",
   "description": "KeshavSoft Extension to enhance the development of web applications",
-  "version": "0.0.83",
+  "version": "0.0.84",
   "engines": {
     "vscode": "^1.96.0"
   },
@@ -75,8 +75,8 @@
         "title": "NodeJs Task GroupByColumn"
       },
       {
-        "command": "NodeJs.Task.NewTask.ShowGet",
-        "title": "NodeJs Task NewTask ShowGet"
+        "command": "NodeJs.Task.NewTask.ShowGet.AsArray",
+        "title": "NodeJs Task NewTask ShowGet AsArray"
       },
       {
         "command": "NodeJs..NewTask.AlterPut",
