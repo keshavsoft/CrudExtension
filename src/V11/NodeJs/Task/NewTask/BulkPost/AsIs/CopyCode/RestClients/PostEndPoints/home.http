@@ -1,0 +1,4 @@
+POST http://localhost:7328/binV4/StudentNames/BulkPost
+Content-Type: application/json
+
+[{"StudentName":"Keshav","Mobile":9848163021}]
