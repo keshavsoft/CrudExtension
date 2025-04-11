@@ -1,8 +1,8 @@
-const { StartFunc: StartFuncAsModule } = require("./AsModule/entryFile");
+// const { StartFunc: StartFuncAsModule } = require("./AsModule/entryFile");
 const { StartFunc: StartFuncFromCommonConfig } = require("./CommonConfig/entryFile");
 
 const StartFunc = () => {
-    StartFuncAsModule();
+    // StartFuncAsModule();
     StartFuncFromCommonConfig();
 };
 

@@ -3,7 +3,7 @@
   "displayName": "CrudExtension",
   "publisher": "KeshavSoft",
   "description": "KeshavSoft Extension to enhance the development of web applications",
-  "version": "0.0.86",
+  "version": "0.0.87",
   "engines": {
     "vscode": "^1.96.0"
   },
@@ -79,7 +79,7 @@
         "title": "NodeJs Task NewTask ShowGet AsArray"
       },
       {
-        "command": "NodeJs..NewTask.AlterPut",
+        "command": "NodeJs.NewTask.AlterPut",
         "title": "NodeJs Task NewTask AlterPut"
       },
       {
