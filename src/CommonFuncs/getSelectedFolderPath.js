@@ -6,7 +6,7 @@ const LocalFuncForFolder = async () => {
     await vscode.commands.executeCommand('copyFilePath');
 
     const clipboardText = await vscode.env.clipboard.readText();
-
+    
     if (clipboardText && (await fse.pathExists(clipboardText)) && (await fse.lstat(clipboardText)).isDirectory()) {
         return clipboardText;
     };
