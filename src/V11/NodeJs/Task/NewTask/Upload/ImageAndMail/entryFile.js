@@ -5,7 +5,7 @@ const { StartFunc: CommonFromRestClient } = require('./restClient');
 
 const { StartFunc: CommonGetActiveEditorPath } = require('../../../../../../CommonFuncs/getActiveEditorPath');
 
-const CommonRegisterCommand = "NodeJs.Task.NewTask.ShowGet.AsArrayAndRest";
+const CommonRegisterCommand = "NodeJs.Task.NewTask.Upload.ImageAndMail";
 
 const StartFunc = () => {
     activateFunc();

@@ -3,7 +3,7 @@
   "displayName": "CrudExtension",
   "publisher": "KeshavSoft",
   "description": "KeshavSoft Extension to enhance the development of web applications",
-  "version": "0.0.88",
+  "version": "0.0.89",
   "engines": {
     "vscode": "^1.96.0"
   },
@@ -125,6 +125,10 @@
       {
         "command": "ClientSide.Js.ToHtml.TotalJs.CommonConfig.StaticColumns.Show.UrlFromJson",
         "title": "Cs Js ToHtml TotJs ComConfig StatCol Show UrlFromJson"
+      },
+      {
+        "command": "NodeJs.Task.NewTask.Upload.ImageAndMail",
+        "title": "NodeJs Task NewTask Upload ImageAndMail"
       },
       {
         "command": "KChakri",
